@@ -21,7 +21,7 @@ export const ExperienceDetailed = () => (
                 <motion.div
                     key={i}
                     variants={fadeInUp}
-                    className="grid md:grid-cols-3 gap-8 p-10 bg-card/30 border rounded-[2.5rem] relative overflow-hidden group hover:bg-card/50 transition-all"
+                    className="grid md:grid-cols-3 gap-8 p-6 md:p-10 bg-card/30 border rounded-[2.5rem] relative overflow-hidden group hover:bg-card/50 transition-all"
                 >
                     <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
                     <div>

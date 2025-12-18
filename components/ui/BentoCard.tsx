@@ -16,7 +16,7 @@ export const BentoCard = ({ item, variants }: Props) => (
     <motion.div
         variants={variants}
         whileHover={{ y: -5 }}
-        className={`${item.size} group p-8 bg-card border rounded-3xl hover:border-indigo-500/50 transition-all relative overflow-hidden`}
+        className={`${item.size} group p-6 md:p-8 bg-card border rounded-3xl hover:border-indigo-500/50 transition-all relative overflow-hidden`}
     >
         <div className="flex justify-between items-start mb-6">
             <div className="p-3 bg-indigo-500/10 rounded-2xl text-indigo-500">{item.icon}</div>
