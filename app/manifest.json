@@ -1,6 +1,6 @@
 {
-  "name": "My Software Engineer",
-  "short_name": "My Engineer",
+  "name": "Oscar Torres Portfolio",
+  "short_name": "Oscar Torres",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,5 +15,7 @@
       "purpose": "maskable"
     }
   ],
+  "theme_color": "#020817",
+  "background_color": "#020817",
   "display": "standalone"
 }
