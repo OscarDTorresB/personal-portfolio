@@ -14,7 +14,7 @@ export const Hero = () => (
                     <Sparkles size={12} /> Tech Lead & Software Architect
                 </div>
                 <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
-                    Building <span className="text-indigo-500">Robust</span><br />Web Infrastructure<span className="text-indigo-500">.</span>
+                    Building <span className="text-indigo-500">Robust</span><br />Web<span className="text-indigo-500">.</span>
                 </h1>
                 <p className="text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed">
                     Expert in React, Performance Tuning, and Technical Leadership. Delivering high-impact engineering solutions for global enterprises.
