@@ -1,15 +1,6 @@
-import { Sun, Moon } from 'lucide-react';
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+
 
 export const Nav = () => {
-    const { resolvedTheme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
     return (
         <nav className="fixed top-0 w-full z-50 border-b bg-background/80 backdrop-blur-md">
             <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -23,13 +14,6 @@ export const Nav = () => {
                         <a href="#architecture" className="hover:text-indigo-500 transition-colors">Stack</a>
                         <a href="#advisor" className="hover:text-indigo-500 transition-colors">AI Advisor</a>
                     </div>
-                    <button
-                        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-                        className="p-2 rounded-full hover:bg-muted transition-colors"
-                        aria-label="Toggle theme"
-                    >
-                        {mounted && (resolvedTheme === 'dark' ? <Sun size={20} /> : <Moon size={20} />)}
-                    </button>
                 </div>
             </div>
         </nav>
