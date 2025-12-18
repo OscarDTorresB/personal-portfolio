@@ -13,10 +13,10 @@ export const Architecture = () => (
                 <motion.div
                     key={idx}
                     whileHover={{ y: -5 }}
-                    className="group relative p-8 bg-card border rounded-3xl hover:border-indigo-500/50 transition-all overflow-hidden"
+                    className="group relative p-8 bg-card border rounded-3xl hover:border-sky-500/50 transition-all overflow-hidden"
                 >
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
-                        <Layers className="text-indigo-500" size={48} />
+                        <Layers className="text-sky-500" size={48} />
                     </div>
                     <h3 className="text-xl font-bold mb-4">{item.title}</h3>
                     <p className="text-sm text-muted-foreground mb-6">{item.description}</p>
@@ -26,7 +26,7 @@ export const Architecture = () => (
                                 <span key={i} className="text-[10px] px-2 py-1 bg-muted rounded-md uppercase font-bold tracking-wider">{t}</span>
                             ))}
                         </div>
-                        <p className="text-xs leading-relaxed italic border-l-2 border-indigo-500/30 pl-3">
+                        <p className="text-xs leading-relaxed italic border-l-2 border-sky-500/30 pl-3">
                             {item.details}
                         </p>
                     </div>

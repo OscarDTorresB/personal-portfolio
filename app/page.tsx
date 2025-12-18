@@ -16,7 +16,7 @@ import { BigAIConsultant } from '@/components/features/BigAIConsultant';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30">
+    <div className="min-h-screen bg-background text-foreground selection:bg-sky-500/30">
       <Nav />
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-20">

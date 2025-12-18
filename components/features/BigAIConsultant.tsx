@@ -41,12 +41,12 @@ export const BigAIConsultant = () => {
 
     return (
         <section id="advisor" className="mb-32">
-            <div className="bg-indigo-600 rounded-[3.5rem] p-12 md:p-20 text-white relative overflow-hidden">
+            <div className="bg-sky-600 rounded-[3.5rem] p-12 md:p-20 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-12 opacity-10"><Bot size={300} /></div>
                 <div className="grid md:grid-cols-2 gap-16 items-center relative z-10">
                     <div>
                         <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase mb-8 leading-tight">Consult My<br />Digital Twin</h2>
-                        <p className="text-indigo-100 text-xl mb-10 leading-relaxed max-w-md">
+                        <p className="text-sky-100 text-xl mb-10 leading-relaxed max-w-md">
                             Have a technical challenge? Ask my AI Advisor how I would approach scaling, performance, or team leadership based on my real experience.
                         </p>
                         <form onSubmit={formik.handleSubmit} className="relative">
@@ -55,7 +55,7 @@ export const BigAIConsultant = () => {
                                 placeholder="E.g. How do you handle 1M+ nodes in a dashboard?"
                                 className="w-full bg-white/10 border-2 border-white/20 rounded-2xl p-5 pr-16 text-white placeholder:text-white/40 focus:border-white outline-none transition-all backdrop-blur-md"
                             />
-                            <button type="submit" className="absolute right-3 top-3 p-3 bg-white text-indigo-600 rounded-xl hover:scale-105 transition-transform">
+                            <button type="submit" className="absolute right-3 top-3 p-3 bg-white text-sky-600 rounded-xl hover:scale-105 transition-transform">
                                 {formik.isSubmitting ? <Loader2 className="animate-spin" /> : <Send size={20} />}
                             </button>
                             <AnimatePresence>
@@ -77,10 +77,10 @@ export const BigAIConsultant = () => {
                     <div className="min-h-[300px] flex flex-col justify-center bg-black/20 rounded-[2.5rem] p-10 border border-white/10 backdrop-blur-xl">
                         {response ? (
                             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-                                <div className="flex items-center gap-2 text-indigo-300 font-bold text-xs uppercase tracking-widest">
+                                <div className="flex items-center gap-2 text-sky-300 font-bold text-xs uppercase tracking-widest">
                                     <Zap size={14} /> Recommended Architecture
                                 </div>
-                                <p className="text-sm leading-relaxed text-indigo-50/90 whitespace-pre-wrap">{response}</p>
+                                <p className="text-sm leading-relaxed text-sky-50/90 whitespace-pre-wrap">{response}</p>
                             </motion.div>
                         ) : (
                             <div className="text-center opacity-40">

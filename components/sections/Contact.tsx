@@ -12,7 +12,7 @@ export const Contact = () => (
         viewport={viewportConfig}
         variants={staggerContainer}
     >
-        <motion.h2 variants={fadeInUp} className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-none">Let's Build the<br /><span className="text-indigo-500 italic underline decoration-indigo-500/20">Future Core</span>.</motion.h2>
+        <motion.h2 variants={fadeInUp} className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-none">Let's Build the<br /><span className="text-sky-500 italic underline decoration-sky-500/20">Future Core</span>.</motion.h2>
         <motion.p variants={fadeInUp} className="text-xl text-muted-foreground mb-12 max-w-xl mx-auto font-medium">
             Looking for a Tech Lead to drive your next enterprise system or a consultant to optimize your performance?
         </motion.p>

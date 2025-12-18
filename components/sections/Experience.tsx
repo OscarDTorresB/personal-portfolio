@@ -19,7 +19,7 @@ export const Experience = () => (
                 >
                     <div className="md:w-1/3">
                         <h3 className="text-xl font-bold">{exp.company}</h3>
-                        <p className="text-indigo-500 font-medium mb-2">{exp.role}</p>
+                        <p className="text-sky-500 font-medium mb-2">{exp.role}</p>
                         <p className="text-sm text-muted-foreground uppercase tracking-widest">{exp.period}</p>
                     </div>
                     <div className="md:w-2/3 space-y-4">

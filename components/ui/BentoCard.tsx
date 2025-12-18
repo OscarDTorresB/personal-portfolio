@@ -16,10 +16,10 @@ export const BentoCard = ({ item, variants }: Props) => (
     <motion.div
         variants={variants}
         whileHover={{ y: -5 }}
-        className={`${item.size} group p-6 md:p-8 bg-card border rounded-3xl hover:border-indigo-500/50 transition-all relative overflow-hidden`}
+        className={`${item.size} group p-6 md:p-8 bg-card border rounded-3xl hover:border-sky-500/50 transition-all relative overflow-hidden`}
     >
         <div className="flex justify-between items-start mb-6">
-            <div className="p-3 bg-indigo-500/10 rounded-2xl text-indigo-500">{item.icon}</div>
+            <div className="p-3 bg-sky-500/10 rounded-2xl text-sky-500">{item.icon}</div>
             <div className="flex flex-wrap gap-1 justify-end">
                 {item.tech.map((t, i) => <span key={i} className="text-[10px] px-2 py-1 bg-muted rounded font-bold uppercase tracking-wider">{t}</span>)}
             </div>

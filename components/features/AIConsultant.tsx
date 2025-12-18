@@ -41,11 +41,11 @@ export const AIConsultant = () => {
 
     return (
         <section id="ai-consultant" className="mb-32">
-            <div className="relative p-1 rounded-[2.5rem] bg-linear-to-br from-indigo-500 via-purple-500 to-sky-500 animate-gradient-xy">
+            <div className="relative p-1 rounded-[2.5rem] bg-linear-to-br from-sky-500 via-purple-500 to-sky-500 animate-gradient-xy">
                 <div className="bg-card rounded-[2.4rem] p-8 md:p-12">
                     <div className="flex flex-col md:flex-row gap-12 items-start">
                         <div className="md:w-1/3">
-                            <div className="w-16 h-16 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-6 text-indigo-500">
+                            <div className="w-16 h-16 bg-sky-500/10 rounded-2xl flex items-center justify-center mb-6 text-sky-500">
                                 <Bot size={32} />
                             </div>
                             <h2 className="text-3xl font-bold mb-4">✨ AI Advisor</h2>
@@ -63,7 +63,7 @@ export const AIConsultant = () => {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     placeholder="Ex: I need to scale a massive data visualization system for mobile..."
-                                    className={`w-full h-32 bg-muted border rounded-2xl p-4 pr-16 focus:ring-2 focus:ring-indigo-500 outline-none resize-none transition-all placeholder:text-muted-foreground/80 ${formik.touched.prompt && formik.errors.prompt ? 'border-red-500 focus:ring-red-500' : ''
+                                    className={`w-full h-32 bg-muted border rounded-2xl p-4 pr-16 focus:ring-2 focus:ring-sky-500 outline-none resize-none transition-all placeholder:text-muted-foreground/80 ${formik.touched.prompt && formik.errors.prompt ? 'border-red-500 focus:ring-red-500' : ''
                                         }`}
                                     onKeyDown={(e) => {
                                         if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
@@ -82,7 +82,7 @@ export const AIConsultant = () => {
                                 <button
                                     type="submit"
                                     disabled={formik.isSubmitting || !formik.isValid || !formik.dirty}
-                                    className="absolute bottom-4 right-4 p-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 disabled:opacity-50 transition-all flex items-center gap-2"
+                                    className="absolute bottom-4 right-4 p-3 bg-sky-600 text-white rounded-xl hover:bg-sky-700 disabled:opacity-50 transition-all flex items-center gap-2"
                                 >
                                     {formik.isSubmitting ? <Loader2 className="animate-spin" size={20} /> : <Sparkles size={20} />}
                                     <span className="hidden md:inline font-bold">Consult ✨</span>
@@ -95,20 +95,20 @@ export const AIConsultant = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0 }}
-                                        className="p-6 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl"
+                                        className="p-6 bg-sky-500/10 border border-sky-500/20 rounded-2xl"
                                     >
-                                        <div className="flex items-center gap-2 mb-3 text-indigo-500">
+                                        <div className="flex items-center gap-2 mb-3 text-sky-500">
                                             <Zap size={18} />
                                             <span className="font-bold text-sm uppercase tracking-tighter">Oscar's Recommendation</span>
                                         </div>
-                                        <div className="prose dark:prose-invert prose-indigo max-w-none">
+                                        <div className="prose dark:prose-invert prose-sky max-w-none">
                                             <ReactMarkdown
                                                 components={{
                                                     p: ({ node, ...props }) => <p {...props} className="mb-2" />,
-                                                    a: ({ node, ...props }) => <a {...props} className="text-indigo-500 hover:underline" />,
-                                                    code: ({ node, ...props }) => <code {...props} className="bg-indigo-500/10 border border-indigo-500/20 rounded px-2 py-1" />,
-                                                    pre: ({ node, ...props }) => <pre {...props} className="bg-indigo-500/10 border border-indigo-500/20 rounded p-4" />,
-                                                    blockquote: ({ node, ...props }) => <blockquote {...props} className="bg-indigo-500/10 border border-indigo-500/20 rounded p-4" />,
+                                                    a: ({ node, ...props }) => <a {...props} className="text-sky-500 hover:underline" />,
+                                                    code: ({ node, ...props }) => <code {...props} className="bg-sky-500/10 border border-sky-500/20 rounded px-2 py-1" />,
+                                                    pre: ({ node, ...props }) => <pre {...props} className="bg-sky-500/10 border border-sky-500/20 rounded p-4" />,
+                                                    blockquote: ({ node, ...props }) => <blockquote {...props} className="bg-sky-500/10 border border-sky-500/20 rounded p-4" />,
                                                     h1: ({ node, ...props }) => <h1 {...props} className="text-3xl font-bold mb-4 mt-6" />,
                                                     h2: ({ node, ...props }) => <h2 {...props} className="text-2xl font-bold mb-4 mt-6" />,
                                                     h3: ({ node, ...props }) => <h3 {...props} className="text-xl font-bold mb-4 mt-6" />,

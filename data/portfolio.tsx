@@ -48,7 +48,7 @@ export const DATA = {
             title: "Data Visualization Engine",
             description: "Custom library for massive datasets.",
             tech: ["Plotly.js", "ExcelJS", "Web Components"],
-            icon: <LineChart className="text-indigo-500" />,
+            icon: <LineChart className="text-sky-500" />,
             size: "md:col-span-2",
             visual: (
                 <div className="flex items-end gap-1 h-12 mt-4" >
@@ -59,7 +59,7 @@ export const DATA = {
                                 initial={{ height: 0 }}
                                 animate={{ height: `${h}%` }}
                                 transition={{ delay: i * 0.1, repeat: Infinity, repeatType: 'reverse', duration: 2 }}
-                                className="w-full bg-indigo-500/40 rounded-t-sm"
+                                className="w-full bg-sky-500/40 rounded-t-sm"
                             />
                         ))}
                 </div>
