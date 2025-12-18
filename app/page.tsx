@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from 'react';
 import { Nav } from '@/components/layout/Nav';
 import { Hero } from '@/components/sections/Hero';
 import { ImpactStats } from '@/components/sections/ImpactStats';
@@ -16,19 +15,9 @@ import { BigAIConsultant } from '@/components/features/BigAIConsultant';
 // import { LogoBar } from '@/components/sections/LogoBar';
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(true);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
-
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30">
-      <Nav darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Nav />
 
       <main className="max-w-6xl mx-auto px-6 pt-32 pb-20">
         <Hero />
