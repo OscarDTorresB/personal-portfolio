@@ -15,7 +15,7 @@ export const Hero = () => (
                 <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 text-[10px] font-black uppercase tracking-widest mb-8">
                     <Sparkles size={12} /> Tech Lead & Software Architect
                 </motion.div>
-                <motion.h1 variants={fadeInUp} className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase wrap-break-words hyphens-auto">
+                <motion.h1 variants={fadeInUp} className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
                     Premium <span className="text-indigo-500">Software</span><br />Engineering<span className="text-indigo-500">.</span>
                 </motion.h1>
                 <motion.p variants={fadeInUp} className="text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed">
