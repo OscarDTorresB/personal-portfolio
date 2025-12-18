@@ -1,16 +1,15 @@
 import { Variants } from 'framer-motion';
 
 export const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
         opacity: 1,
         y: 0,
         transition: {
-            type: "spring",
-            damping: 25,
-            stiffness: 100,
-            duration: 0.5
-        }
+            duration: 0.6,
+            delay: 0.2,
+            ease: "easeOut",
+        },
     }
 };
 
@@ -31,14 +30,14 @@ export const scaleIn: Variants = {
         opacity: 1,
         scale: 1,
         transition: {
-            type: "spring",
-            damping: 20,
-            stiffness: 100
-        }
+            duration: 0.6,
+            delay: 0.2,
+            ease: "easeOut",
+        },
     }
 };
 
 export const viewportConfig = {
     once: true,
-    margin: "-100px" // Trigger slightly before element is effectively usable
+    margin: "-20px" // Trigger slightly before element is effectively usable
 };
