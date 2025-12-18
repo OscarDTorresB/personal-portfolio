@@ -1,6 +1,7 @@
 import { FadeIn } from '../animations/FadeIn';
 import { Briefcase, CheckCircle2 } from 'lucide-react';
 import { DATA } from '@/data/portfolio';
+import { Card } from '@/components/ui/card';
 
 export const ExperienceDetailed = () => (
     <section id="experience" className="mb-32">
@@ -16,28 +17,29 @@ export const ExperienceDetailed = () => (
                 <FadeIn
                     key={i}
                     delay={i * 0.1}
-                    className="grid md:grid-cols-3 gap-8 p-6 md:p-10 bg-card/30 border rounded-[2.5rem] relative overflow-hidden group hover:bg-card/50 transition-all"
                 >
-                    <div className="absolute top-0 left-0 w-1 h-full bg-sky-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
-                    <div>
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-sky-500/10 rounded-lg text-sky-500"><Briefcase size={20} /></div>
-                            <h3 className="text-2xl font-black">{exp.company}</h3>
+                    <Card className="grid md:grid-cols-3 gap-8 p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:bg-card/50 transition-all bg-card/30">
+                        <div className="absolute top-0 left-0 w-1 h-full bg-sky-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
+                        <div>
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="p-2 bg-sky-500/10 rounded-lg text-sky-500"><Briefcase size={20} /></div>
+                                <h3 className="text-2xl font-black">{exp.company}</h3>
+                            </div>
+                            <p className="text-sky-500 font-bold mb-1">{exp.role}</p>
+                            <p className="text-xs text-muted-foreground uppercase font-black tracking-widest">{exp.period}</p>
                         </div>
-                        <p className="text-sky-500 font-bold mb-1">{exp.role}</p>
-                        <p className="text-xs text-muted-foreground uppercase font-black tracking-widest">{exp.period}</p>
-                    </div>
-                    <div className="md:col-span-2 space-y-6">
-                        <p className="text-muted-foreground font-medium italic">{exp.description}</p>
-                        <ul className="grid gap-4">
-                            {exp.achievements.map((a, idx) => (
-                                <li key={idx} className="flex gap-4 text-sm leading-relaxed">
-                                    <CheckCircle2 className="text-sky-500 shrink-0 mt-1" size={18} />
-                                    <span>{a}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        <div className="md:col-span-2 space-y-6">
+                            <p className="text-muted-foreground font-medium italic">{exp.description}</p>
+                            <ul className="grid gap-4">
+                                {exp.achievements.map((a, idx) => (
+                                    <li key={idx} className="flex gap-4 text-sm leading-relaxed">
+                                        <CheckCircle2 className="text-sky-500 shrink-0 mt-1" size={18} />
+                                        <span>{a}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </Card>
                 </FadeIn>
             ))}
         </div>

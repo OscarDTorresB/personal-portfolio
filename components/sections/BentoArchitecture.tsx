@@ -17,7 +17,7 @@ export const BentoArchitecture = () => (
                 <FadeIn
                     key={i}
                     delay={i * 0.1}
-                    className="h-full"
+                    className={`h-full ${item.size}`}
                 >
                     <BentoCard item={item} />
                 </FadeIn>

@@ -1,6 +1,7 @@
 import { Linkedin, Mail } from 'lucide-react';
 import { DATA } from '@/data/portfolio';
 import { FadeIn } from '../animations/FadeIn';
+import { Button } from '@/components/ui/button';
 
 export const Contact = () => (
     <section
@@ -17,12 +18,16 @@ export const Contact = () => (
         </FadeIn>
         <FadeIn delay={0.2}>
             <div className="flex flex-col md:flex-row justify-center gap-6">
-                <a href={`mailto:${DATA.profile.email}`} className="px-12 py-6 bg-foreground text-background font-black rounded-3xl hover:scale-105 transition-all flex items-center justify-center gap-3 text-lg shadow-2xl">
-                    <Mail /> Reach Out Directly
-                </a>
-                <a href="#" className="px-12 py-6 bg-card border-2 font-black rounded-3xl hover:bg-muted transition-all flex items-center justify-center gap-3 text-lg">
-                    <Linkedin /> LinkedIn Profile
-                </a>
+                <Button size="lg" className="rounded-3xl text-lg shadow-2xl hover:scale-105" asChild>
+                    <a href={`mailto:${DATA.profile.email}`}>
+                        <Mail /> Reach Out Directly
+                    </a>
+                </Button>
+                <Button size="lg" variant="outline" className="rounded-3xl text-lg" asChild>
+                    <a href="#">
+                        <Linkedin /> LinkedIn Profile
+                    </a>
+                </Button>
             </div>
         </FadeIn>
     </section>

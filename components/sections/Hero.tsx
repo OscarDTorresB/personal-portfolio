@@ -1,6 +1,8 @@
 import { DATA } from '@/data/portfolio';
 import { ChevronRight, Code2, Github, Linkedin, Sparkles } from 'lucide-react';
 import { FadeIn } from '../animations/FadeIn';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 export const Hero = () => (
     <section className="mb-32">
@@ -8,8 +10,10 @@ export const Hero = () => (
             <div
                 className="lg:col-span-3"
             >
-                <FadeIn className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-500 text-[10px] font-black uppercase tracking-widest mb-8">
-                    <Sparkles size={12} /> Tech Lead & Software Architect
+                <FadeIn>
+                    <Badge variant="outline" className="inline-flex items-center gap-2 px-3 py-1 border-sky-500/20 text-sky-500 text-[10px] font-black uppercase tracking-widest mb-8 bg-sky-500/10">
+                        <Sparkles size={12} /> Tech Lead & Software Architect
+                    </Badge>
                 </FadeIn>
                 <FadeIn
                     delay={0.1}
@@ -27,12 +31,18 @@ export const Hero = () => (
                     delay={0.3}
                     className="flex flex-wrap gap-4"
                 >
-                    <a href="#experience" className="px-10 py-4 bg-sky-600 text-white rounded-2xl font-bold shadow-2xl shadow-sky-500/20 hover:scale-105 transition-all flex items-center gap-2">
-                        View Experience <ChevronRight size={20} />
-                    </a>
+                    <Button size="lg" className="bg-sky-600 text-white rounded-2xl font-bold shadow-2xl shadow-sky-500/20 hover:scale-105 hover:bg-sky-600/90" asChild>
+                        <a href="#experience">
+                            View Experience <ChevronRight size={20} />
+                        </a>
+                    </Button>
                     <div className="flex items-center gap-4">
-                        <a href={DATA.profile.linkedin} target="_blank" className="p-3 bg-card border rounded-xl hover:text-sky-500 transition-colors"><Linkedin size={24} /></a>
-                        <a href={DATA.profile.github} target="_blank" className="p-3 bg-card border rounded-xl hover:text-sky-500 transition-colors"><Github size={24} /></a>
+                        <Button variant="outline" size="icon" className="rounded-xl hover:text-sky-500" asChild>
+                            <a href={DATA.profile.linkedin} target="_blank"><Linkedin size={24} /></a>
+                        </Button>
+                        <Button variant="outline" size="icon" className="rounded-xl hover:text-sky-500" asChild>
+                            <a href={DATA.profile.github} target="_blank"><Github size={24} /></a>
+                        </Button>
                     </div>
                 </FadeIn>
             </div>
