@@ -4,9 +4,9 @@ import { Cpu, Layout, LineChart, ShieldCheck } from "lucide-react";
 export const DATA = {
     profile: {
         name: "Oscar Torres",
-        role: "Senior Software Engineer & Tech Lead",
+        role: "Senior Software Engineer",
         location: "Colombia",
-        bio: "Frontend Architecture Specialist and Technical Lead. Focused on building scalable, accessible (WCAG), and high-performance systems that transform business objectives into technical realities.",
+        bio: "Senior Software Engineer specializing in the React ecosystem. I focus on writing clean, testable code and building accessible (WCAG) user interfaces that perform flawlessly at scale.",
         email: "oscardtorresb@gmail.com",
         linkedin: "https://www.linkedin.com/in/oscardtorresb/",
         github: "https://github.com/OscarDTorresB"

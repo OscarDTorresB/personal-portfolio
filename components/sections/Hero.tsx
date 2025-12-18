@@ -14,10 +14,10 @@ export const Hero = () => (
                     <Sparkles size={12} /> Tech Lead & Software Architect
                 </div>
                 <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
-                    Building <span className="text-indigo-500">Robust</span><br />Web<span className="text-indigo-500">.</span>
+                    Premium <span className="text-indigo-500">Software</span><br />Engineering<span className="text-indigo-500">.</span>
                 </h1>
                 <p className="text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed">
-                    Expert in React, Performance Tuning, and Technical Leadership. Delivering high-impact engineering solutions for global enterprises.
+                    Senior Software Engineer specialized in React & Next.js. I blend technical precision with architectural best practices to build pixel-perfect, scalable web interfaces.
                 </p>
                 <div className="flex flex-wrap gap-4">
                     <a href="#experience" className="px-10 py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-2xl shadow-indigo-500/20 hover:scale-105 transition-all flex items-center gap-2">
@@ -41,7 +41,7 @@ export const Hero = () => (
                             <div className="w-3 h-3 rounded-full bg-amber-500" />
                             <div className="w-3 h-3 rounded-full bg-green-500" />
                         </div>
-                        <p className="text-indigo-400">class TechLead {"{"}</p>
+                        <p className="text-indigo-400">class SeniorEngineer {"{"}</p>
                         <p className="pl-4">name = <span className="text-emerald-400">"Oscar Torres"</span>;</p>
                         <p className="pl-4">seniority = <span className="text-emerald-400">"Senior+"</span>;</p>
                         <p className="pl-4">leadership = <span className="text-emerald-400">true</span>;</p>
