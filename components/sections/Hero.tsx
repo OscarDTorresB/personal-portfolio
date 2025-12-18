@@ -17,7 +17,7 @@ export const Hero = () => (
                 </FadeIn>
                 <FadeIn
                     delay={0.1}
-                    className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase wrap-break-word hyphens-auto"
+                    className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase"
                 >
                     Premium <span className="text-sky-500">Software</span><br />Engineering<span className="text-sky-500">.</span>
                 </FadeIn>
