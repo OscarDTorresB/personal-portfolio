@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Briefcase, CheckCircle2 } from 'lucide-react';
 import { DATA } from '@/data/portfolio';
+import { fadeInUp, staggerContainer, viewportConfig } from '@/lib/animations';
 
 export const ExperienceDetailed = () => (
     <section id="experience" className="mb-32">
@@ -9,12 +10,17 @@ export const ExperienceDetailed = () => (
             <p className="text-muted-foreground max-w-xl text-lg italic underline decoration-indigo-500/20">A proven track record of architectural excellence and impact.</p>
         </div>
 
-        <div className="space-y-16">
+        <motion.div
+            className="space-y-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+        >
             {DATA.experience.map((exp, i) => (
                 <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    variants={fadeInUp}
                     className="grid md:grid-cols-3 gap-8 p-10 bg-card/30 border rounded-[2.5rem] relative overflow-hidden group hover:bg-card/50 transition-all"
                 >
                     <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
@@ -39,6 +45,6 @@ export const ExperienceDetailed = () => (
                     </div>
                 </motion.div>
             ))}
-        </div>
+        </motion.div>
     </section>
 );

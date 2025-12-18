@@ -1,25 +1,27 @@
 import { DATA } from '@/data/portfolio';
 import { motion } from 'framer-motion';
 import { ChevronRight, Code2, Github, Linkedin, Sparkles } from 'lucide-react';
+import { fadeInUp, staggerContainer } from '@/lib/animations';
 
 export const Hero = () => (
     <section className="mb-32">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
             <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial="hidden"
+                animate="visible"
+                variants={staggerContainer}
                 className="lg:col-span-3"
             >
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 text-[10px] font-black uppercase tracking-widest mb-8">
+                <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-500 text-[10px] font-black uppercase tracking-widest mb-8">
                     <Sparkles size={12} /> Tech Lead & Software Architect
-                </div>
-                <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
+                </motion.div>
+                <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase">
                     Premium <span className="text-indigo-500">Software</span><br />Engineering<span className="text-indigo-500">.</span>
-                </h1>
-                <p className="text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed">
+                </motion.h1>
+                <motion.p variants={fadeInUp} className="text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed">
                     Senior Software Engineer specialized in React & Next.js. I blend technical precision with architectural best practices to build pixel-perfect, scalable web interfaces.
-                </p>
-                <div className="flex flex-wrap gap-4">
+                </motion.p>
+                <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
                     <a href="#experience" className="px-10 py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-2xl shadow-indigo-500/20 hover:scale-105 transition-all flex items-center gap-2">
                         View Experience <ChevronRight size={20} />
                     </a>
@@ -27,7 +29,7 @@ export const Hero = () => (
                         <a href={DATA.profile.linkedin} target="_blank" className="p-3 bg-card border rounded-xl hover:text-indigo-500 transition-colors"><Linkedin size={24} /></a>
                         <a href={DATA.profile.github} target="_blank" className="p-3 bg-card border rounded-xl hover:text-indigo-500 transition-colors"><Github size={24} /></a>
                     </div>
-                </div>
+                </motion.div>
             </motion.div>
 
             <div className="lg:col-span-2 relative hidden lg:block">

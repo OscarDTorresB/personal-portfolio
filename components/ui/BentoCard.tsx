@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface Props {
     item: {
@@ -8,11 +8,13 @@ interface Props {
         icon: React.ReactNode;
         size: string;
         visual: React.ReactNode;
-    }
+    };
+    variants?: Variants;
 }
 
-export const BentoCard = ({ item }: Props) => (
+export const BentoCard = ({ item, variants }: Props) => (
     <motion.div
+        variants={variants}
         whileHover={{ y: -5 }}
         className={`${item.size} group p-8 bg-card border rounded-3xl hover:border-indigo-500/50 transition-all relative overflow-hidden`}
     >

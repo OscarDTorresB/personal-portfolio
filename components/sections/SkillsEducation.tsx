@@ -1,9 +1,17 @@
 import { DATA } from '@/data/portfolio';
 import { GraduationCap, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { fadeInUp, staggerContainer, viewportConfig } from '@/lib/animations';
 
 export const SkillsEducation = () => (
     <section className="mb-32 grid md:grid-cols-2 gap-12">
-        <div className="p-10 bg-card border rounded-[2.5rem]">
+        <motion.div
+            className="p-10 bg-card border rounded-[2.5rem]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeInUp}
+        >
             <h3 className="text-2xl font-black mb-8 flex items-center gap-3"><GraduationCap className="text-indigo-500" /> Continuous Learning</h3>
             <div className="space-y-6">
                 {DATA.education.map((edu, i) => (
@@ -17,16 +25,26 @@ export const SkillsEducation = () => (
                     </div>
                 ))}
             </div>
-        </div>
-        <div className="p-10 bg-card border rounded-[2.5rem]">
+        </motion.div>
+        <motion.div
+            className="p-10 bg-card border rounded-[2.5rem]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={staggerContainer}
+        >
             <h3 className="text-2xl font-black mb-8 flex items-center gap-3"><Award className="text-indigo-500" /> Professional Stack</h3>
             <div className="flex flex-wrap gap-2">
                 {["React", "Next.js", "TypeScript", "Node.js", "System Design", "Unit Testing", "TDD", "Frontend Performance", "Accessibility (WCAG)", "State Management", "Leadership", "CI/CD"].map((skill, i) => (
-                    <span key={i} className="px-4 py-2 bg-muted text-xs font-bold rounded-xl border border-transparent hover:border-indigo-500/20 hover:bg-indigo-500/5 transition-all">
+                    <motion.span
+                        key={i}
+                        variants={fadeInUp}
+                        className="px-4 py-2 bg-muted text-xs font-bold rounded-xl border border-transparent hover:border-indigo-500/20 hover:bg-indigo-500/5 transition-all"
+                    >
                         {skill}
-                    </span>
+                    </motion.span>
                 ))}
             </div>
-        </div>
+        </motion.div>
     </section>
 );
