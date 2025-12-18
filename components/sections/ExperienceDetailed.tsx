@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion';
+import { FadeIn } from '../animations/FadeIn';
 import { Briefcase, CheckCircle2 } from 'lucide-react';
 import { DATA } from '@/data/portfolio';
-import { fadeInUp, staggerContainer, viewportConfig } from '@/lib/animations';
 
 export const ExperienceDetailed = () => (
     <section id="experience" className="mb-32">
@@ -10,17 +9,13 @@ export const ExperienceDetailed = () => (
             <p className="text-muted-foreground max-w-xl text-lg italic underline decoration-sky-500/20">A proven track record of architectural excellence and impact.</p>
         </div>
 
-        <motion.div
+        <div
             className="space-y-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            variants={staggerContainer}
         >
             {DATA.experience.map((exp, i) => (
-                <motion.div
+                <FadeIn
                     key={i}
-                    variants={fadeInUp}
+                    delay={i * 0.1}
                     className="grid md:grid-cols-3 gap-8 p-6 md:p-10 bg-card/30 border rounded-[2.5rem] relative overflow-hidden group hover:bg-card/50 transition-all"
                 >
                     <div className="absolute top-0 left-0 w-1 h-full bg-sky-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-top" />
@@ -43,8 +38,8 @@ export const ExperienceDetailed = () => (
                             ))}
                         </ul>
                     </div>
-                </motion.div>
+                </FadeIn>
             ))}
-        </motion.div>
+        </div>
     </section>
 );

@@ -1,7 +1,6 @@
 import { DATA } from "@/data/portfolio";
 import { BentoCard } from "../ui/BentoCard";
-import { motion } from "framer-motion";
-import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
+import { FadeIn } from "../animations/FadeIn";
 
 export const BentoArchitecture = () => (
     <section id="architecture" className="mb-32">
@@ -11,14 +10,18 @@ export const BentoArchitecture = () => (
                 <p className="text-muted-foreground text-lg">Key architectural contributions and specialized tooling.</p>
             </div>
         </div>
-        <motion.div
+        <div
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            variants={staggerContainer}
         >
-            {DATA.bentoArchitecture.map((item, i) => <BentoCard key={i} item={item} variants={fadeInUp} />)}
-        </motion.div>
+            {DATA.bentoArchitecture.map((item, i) => (
+                <FadeIn
+                    key={i}
+                    delay={i * 0.1}
+                    className="h-full"
+                >
+                    <BentoCard item={item} />
+                </FadeIn>
+            ))}
+        </div>
     </section>
 )
