@@ -24,7 +24,7 @@ export const Contact = () => (
                     </a>
                 </Button>
                 <Button size="lg" variant="outline" className="rounded-3xl text-lg" asChild>
-                    <a href="#">
+                    <a href={DATA.profile.linkedin} target='_blank' rel='noopener noreferrer'>
                         <Linkedin /> LinkedIn Profile
                     </a>
                 </Button>

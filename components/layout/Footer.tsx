@@ -1,4 +1,4 @@
-import { Github, Linkedin, Globe } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import { DATA } from '@/data/portfolio';
 
 export const Footer = () => (

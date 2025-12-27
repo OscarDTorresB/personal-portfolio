@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 
 export const Nav = () => {
     return (
@@ -6,13 +6,13 @@ export const Nav = () => {
             <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-sky-600 rounded-lg flex items-center justify-center text-white font-bold">O</div>
-                    <a href='#' className="font-bold text-xl tracking-tighter">OSCAR<span className="text-sky-500">.</span>ENGINEERING</a>
+                    <Link href='#' className="font-bold text-xl tracking-tighter">OSCAR<span className="text-sky-500">.</span>ENGINEERING</Link>
                 </div>
                 <div className="flex items-center gap-6">
                     <div className="hidden md:flex gap-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                        <a href="#experience" className="hover:text-sky-500 transition-colors">Experience</a>
-                        <a href="#architecture" className="hover:text-sky-500 transition-colors">Stack</a>
-                        <a href="#advisor" className="hover:text-sky-500 transition-colors">AI Advisor</a>
+                        <Link href="#experience" className="hover:text-sky-500 transition-colors">Experience</Link>
+                        <Link href="#architecture" className="hover:text-sky-500 transition-colors">Stack</Link>
+                        <Link href="#advisor" className="hover:text-sky-500 transition-colors">AI Advisor</Link>
                     </div>
                 </div>
             </div>

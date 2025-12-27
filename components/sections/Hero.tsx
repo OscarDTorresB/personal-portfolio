@@ -3,6 +3,7 @@ import { ChevronRight, Code2, Github, Linkedin, Sparkles } from 'lucide-react';
 import { FadeIn } from '../animations/FadeIn';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 
 export const Hero = () => (
     <section className="mb-32">
@@ -32,9 +33,9 @@ export const Hero = () => (
                     className="flex flex-wrap gap-4"
                 >
                     <Button size="lg" className="bg-sky-600 text-white rounded-2xl font-bold shadow-2xl shadow-sky-500/20 hover:scale-105 hover:bg-sky-600/90" asChild>
-                        <a href="#experience">
+                        <Link href="#experience">
                             View Experience <ChevronRight size={20} />
-                        </a>
+                        </Link>
                     </Button>
                     <div className="flex items-center gap-4">
                         <Button variant="outline" size="icon" className="rounded-xl hover:text-sky-500" asChild>
