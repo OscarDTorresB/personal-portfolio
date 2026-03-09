@@ -20,7 +20,9 @@ export const Hero = () => (
                     delay={0.1}
                     className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.85] uppercase"
                 >
-                    Premium <span className="text-sky-500">Software</span><br />Engineering<span className="text-sky-500">.</span>
+                    <h1>
+                        Premium <span className="text-sky-500">Software</span><br />Engineering<span className="text-sky-500">.</span>
+                    </h1>
                 </FadeIn>
                 <FadeIn
                     delay={0.2}
@@ -60,10 +62,10 @@ export const Hero = () => (
                             <div className="w-3 h-3 rounded-full bg-green-500" />
                         </div>
                         <p className="text-sky-400">class SeniorEngineer {"{"}</p>
-                        <p className="pl-4">name = <span className="text-emerald-400">"Oscar Torres"</span>;</p>
-                        <p className="pl-4">seniority = <span className="text-emerald-400">"Senior+"</span>;</p>
+                        <p className="pl-4">name = <span className="text-emerald-400">{`"Oscar Torres"`}</span>;</p>
+                        <p className="pl-4">seniority = <span className="text-emerald-400">{`"Senior+"`}</span>;</p>
                         <p className="pl-4">leadership = <span className="text-emerald-400">true</span>;</p>
-                        <p className="pl-4 text-muted-foreground">// Core focus:</p>
+                        <p className="pl-4 text-muted-foreground">{/* Core focus: */}</p>
                         <p className="pl-4">architect(systems) {"{"}</p>
                         <p className="pl-8 text-sky-400">return systems.scale().optimize();</p>
                         <p className="pl-4">{"}"}</p>
