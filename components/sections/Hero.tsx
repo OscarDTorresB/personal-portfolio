@@ -1,5 +1,5 @@
 import { DATA } from '@/data/portfolio';
-import { ChevronRight, Code2, Github, Linkedin, Sparkles } from 'lucide-react';
+import { ChevronRight, Code2, FileText, Github, Linkedin, Sparkles } from 'lucide-react';
 import { FadeIn } from '../animations/FadeIn';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -38,6 +38,11 @@ export const Hero = () => (
                         <Link href="#experience">
                             View Experience <ChevronRight size={20} />
                         </Link>
+                    </Button>
+                    <Button size="lg" variant="outline" className="rounded-2xl font-bold hover:border-sky-500 hover:text-sky-500" asChild>
+                        <a href="/assets/files/Oscar_Torres_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                            <FileText size={20} /> Resume
+                        </a>
                     </Button>
                     <div className="flex items-center gap-4">
                         <Button variant="outline" size="icon" className="rounded-xl hover:text-sky-500" asChild>

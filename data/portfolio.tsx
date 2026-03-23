@@ -7,7 +7,7 @@ export const DATA = {
         role: "Senior Software Engineer",
         location: "Colombia",
         bio: "Senior Software Engineer specializing in the React ecosystem. I focus on writing clean, testable code and building accessible (WCAG) user interfaces that perform flawlessly at scale.",
-        email: "oscardtorresb@gmail.com",
+        email: "oscar@oscartorres.co",
         linkedin: "https://www.linkedin.com/in/oscardtorresb/",
         github: "https://github.com/OscarDTorresB"
     },
