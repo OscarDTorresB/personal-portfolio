@@ -3,8 +3,8 @@ export const DATA = {
     name: "Oscar Torres",
     role: "Senior Software Engineer",
     location: "Colombia",
-    tagline: "Senior Software Engineer. I build fast, accessible React systems — and now I build with AI.",
-    bio: "Senior Software Engineer based in Colombia with 5+ years of experience building high-performance React applications and AI-powered systems. I specialize in frontend architecture, design systems, and performance optimization. Currently at Starbucks modernizing legacy React apps, previously at OPIS (Dow Jones) where I architected microfrontend platforms and built shared tooling used by thousands.",
+    tagline: "Senior Software Engineer building fast, accessible React applications and AI-powered agents and tools. Currently helping scale starbucks.com.",
+    bio: "Senior Software Engineer based in Colombia with 5+ years of experience building high-performance React applications and AI-powered systems. I specialize in frontend architecture, design systems, and performance optimization. Currently at Starbucks modernizing the React apps that power starbucks.com and the US Rewards experience. Previously at OPIS (Dow Jones), where I led frontend architecture work used daily by thousands of users.",
     email: "oscar@oscartorres.co",
     linkedin: "https://www.linkedin.com/in/oscardtorresb/",
     github: "https://github.com/OscarDTorresB",
@@ -20,53 +20,53 @@ export const DATA = {
     {
       company: "Starbucks",
       role: "Senior Software Engineer",
-      period: "March 2026 – Present",
+      period: "March 2026 - Present",
       current: true,
       description: "Supporting the modernization of legacy React applications that power starbucks.com and the US rewards experience.",
       achievements: [
-        "Supporting the modernization of legacy React applications that power starbucks.com and the US rewards experience through framework upgrades, maintenance, and new feature delivery.",
-        "Contributing to frontend improvements across customer-facing flows with a focus on maintainability, production support, and incremental migration of older code.",
+        "Modernizing the React applications behind starbucks.com and the US Starbucks Rewards experience, covering framework upgrades, new feature delivery, and bug fixes.",
+        "Improving customer-facing frontend flows with a focus on code quality, production stability, and incremental migration of legacy code.",
       ],
       logo: "/assets/logos/starbucks.png",
     },
     {
       company: "OPIS, a Dow Jones Company",
       role: "Senior Software Engineer",
-      period: "June 2022 – November 2025",
+      period: "June 2022 - November 2025",
       current: false,
       description: "Architected frontend systems and platforms for high-visibility data products used by thousands of daily users.",
       achievements: [
         "Architected a microfrontend platform with React and web components that enabled isolated deployments, accelerated delivery, and was adopted across 2 product teams.",
-        "Built a shared React design system with private npm distribution and Storybook documentation that standardized UI development across 3 teams.",
-        "Reduced JavaScript bundle size by nearly 80% and improved load times by ~66% through targeted React and Vite optimization.",
-        "Developed a high-performance Excel-driven tables and charts platform used by ~10,000 daily users across CMA and McCloskey.",
-        "Increased test coverage from 0% to 70% with Jest, React Testing Library, and Cypress.",
+        "Built a shared React component library with Storybook documentation, used by 3 teams to standardize how the UI is built and maintain consistency across products.",
+        "Cut JavaScript bundle size by 80% and reduced page load times by 66% through focused React and Vite performance work.",
+        "Built a high-performance data platform with spreadsheet-style tables and charts, used daily by around 10,000 users across two products.",
+        "Grew automated test coverage from 0% to 70% using Jest, React Testing Library, and Cypress.",
       ],
       logo: "/assets/logos/opis-dow-jones.png",
     },
     {
       company: "The Estée Lauder Companies",
       role: "Software Engineer",
-      period: "February 2022 – June 2022",
+      period: "February 2022 - June 2022",
       current: false,
       description: "Developed and integrated frontend solutions for LATAM ecommerce sites across multiple regional brands.",
       achievements: [
-        "Developed and integrated a new checkout experience for LATAM ecommerce sites across multiple regional brands.",
-        "Improved frontend security by identifying vulnerable React dependencies and refactoring to safer alternatives.",
-        "Supported onboarding improvements and frontend maintenance across Drupal-based ecommerce experiences.",
+        "Built and shipped a new checkout flow for multiple LATAM ecommerce sites across several regional brand properties.",
+        "Strengthened frontend security by identifying outdated React dependencies and replacing them with safer alternatives.",
+        "Maintained and improved Drupal-based ecommerce sites across multiple brands in the region.",
       ],
       logo: "/assets/logos/estee-lauder.png",
     },
     {
       company: "The Body Shop",
       role: "Frontend Software Engineer",
-      period: "February 2021 – February 2022",
+      period: "February 2021 - February 2022",
       current: false,
       description: "Built core user experiences and enrollment flows for a global direct-sales e-commerce platform.",
       achievements: [
-        "Built the consultant enrollment flow with React and TypeScript, partnering with backend engineers on secure multi-step architecture.",
-        "Owned the My Profile experience end to end: account management, purchase history filters, and infinite scrolling.",
-        "Supported stakeholder demos and coordinated frontend delivery plans across parallel development streams.",
+        "Built the consultant enrollment flow in React and TypeScript, working closely with backend engineers to design a secure multi-step form architecture.",
+        "Owned the My Profile section from design to production: account settings, purchase history with filters, and infinite scroll pagination.",
+        "Supported stakeholder demos and helped coordinate frontend delivery across several parallel development tracks.",
       ],
       logo: "/assets/logos/thebodyshop.png",
     },
@@ -75,12 +75,12 @@ export const DATA = {
     {
       name: "Autolisto Appointments",
       url: "https://appointments-autolisto.vercel.app",
-      description: "Scheduling and operations platform with RBAC, automated reminders, WhatsApp campaigns, and customer search.",
+      description: "Full-stack scheduling and operations platform with role-based access, automated reminders, WhatsApp campaigns, and customer search.",
       tech: ["Next.js", "Node.js", "Prisma", "PostgreSQL", "Tailwind CSS", "WhatsApp Business Cloud"],
       highlights: [
-        "Used by ~20 internal users, handles ~2,000 appointments/month.",
-        "Increased monthly appointments 40% via automated workflows.",
-        "Reduced no-shows 70% with WhatsApp reminder campaigns.",
+        "Handles around 2,000 appointments per month for a team of 20 internal users.",
+        "Grew monthly appointments by 40% through automated scheduling workflows.",
+        "Cut appointment no-shows by 70% using automated WhatsApp reminders.",
       ],
     },
     {
@@ -89,23 +89,23 @@ export const DATA = {
       description: "Marketing website and CMS for a healthcare provider.",
       tech: ["Next.js", "Strapi", "Tailwind CSS", "Strapi Cloud"],
       highlights: [
-        "400+ monthly organic visits without paid traffic.",
-        "30% increase in appointments from organic search.",
+        "Drives 400+ monthly visitors through organic search with no paid advertising.",
+        "Generated a 30% increase in appointment bookings from organic search traffic.",
       ],
     },
     {
       name: "Autolisto CDA",
       url: "https://cdaautolisto.com.co",
-      description: "Customer-facing pricing calculator generating RTM cost breakdowns by vehicle type.",
-      tech: ["Next.js", "Tailwind CSS"],
+      description: "Customer-facing website with an interactive pricing calculator that breaks down vehicle inspection costs by type.",
+      tech: ["WordPress", "Elementor"],
       highlights: [
-        "Maintains 95% SLA and 99.95% SLI over the past year.",
+        "Maintained 95% SLA and 99.95% uptime over the past year.",
       ],
     },
   ],
   education: [
     {
-      title: "Claude Certified Architect – Foundations",
+      title: "Claude Certified Architect - Foundations",
       institution: "Anthropic",
       year: "2025",
       details: "Validates hands-on knowledge of the Claude API, Claude Agent SDK, Claude Code, and Model Context Protocol (MCP).",
@@ -132,9 +132,9 @@ You speak in first person as Oscar. You are professional, thoughtful, and direct
 
 Background:
 - Currently at Starbucks (since March 2026), modernizing legacy React apps for starbucks.com and the US rewards experience
-- Previously at OPIS (Dow Jones, June 2022–Nov 2025): architected microfrontend platforms, built a shared design system used by 3 teams, optimized bundle size by ~80%, built an Excel-driven data platform for ~10k daily users, grew test coverage from 0% to 70%
-- The Estée Lauder Companies (Feb–June 2022): checkout experiences for LATAM ecommerce, frontend security improvements
-- The Body Shop (Feb 2021–Feb 2022): consultant enrollment flows, profile management, multi-step React/TypeScript architecture
+- Previously at OPIS (Dow Jones, June 2022-Nov 2025): architected microfrontend platforms, built a shared design system used by 3 teams, optimized bundle size by ~80%, built an Excel-driven data platform for ~10k daily users, grew test coverage from 0% to 70%
+- The Estée Lauder Companies (Feb-June 2022): checkout experiences for LATAM ecommerce, frontend security improvements
+- The Body Shop (Feb 2021-Feb 2022): consultant enrollment flows, profile management, multi-step React/TypeScript architecture
 
 Technical strengths:
 - React ecosystem: React, Next.js, TypeScript, Vite, Zustand, TanStack Query, Storybook
@@ -148,7 +148,7 @@ Side projects you've built:
 - Autolisto CDA: a customer-facing pricing calculator for a vehicle inspection service
 
 Education:
-- Claude Certified Architect – Foundations (Anthropic, 2025)
+- Claude Certified Architect - Foundations (Anthropic, 2025)
 - Advanced React (Meta, 2023)
 - BSc in Systems Engineering at EAN University (In Progress)
 

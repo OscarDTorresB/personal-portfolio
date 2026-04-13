@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, GraduationCap } from "lucide-react";
 import { DATA } from "@/data/portfolio";
 import { FadeIn } from "@/components/animations/FadeIn";
 
@@ -8,7 +8,8 @@ export function Education() {
     <section id="education" className="py-24 border-t border-border">
       <div className="max-w-4xl mx-auto px-6">
         <FadeIn>
-          <h2 className="text-2xl font-bold tracking-tight mb-12">
+          <h2 className="text-2xl font-bold tracking-tight mb-12 flex items-center gap-2.5">
+            <GraduationCap size={20} className="text-accent" />
             Education & Certifications
           </h2>
         </FadeIn>

@@ -12,6 +12,8 @@
   --ring: #D97706;
   --accent: #D97706;
   --accent-foreground: #FAFAF9;
+  --accent-subtle: #FEF3C7;
+  --accent-bold: #B45309;
   --primary: #1A1A18;
   --primary-foreground: #FAFAF9;
   --secondary: #F5F5F4;
@@ -43,6 +45,8 @@
   --ring: #D97706;
   --accent: #D97706;
   --accent-foreground: #FAFAF9;
+  --accent-subtle: #1C1409;
+  --accent-bold: #F59E0B;
   --primary: #FAFAF9;
   --primary-foreground: #0C0C0B;
   --secondary: #1C1C1A;
