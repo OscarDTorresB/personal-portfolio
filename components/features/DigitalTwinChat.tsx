@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send } from "lucide-react";
+import { Send, RotateCcw } from "lucide-react";
 import Image from "next/image";
 import { DATA } from "@/data/portfolio";
 import type { ConversationMessage } from "@/lib/gemini";
@@ -10,10 +10,15 @@ import ReactMarkdown from "react-markdown";
 const AVATAR_URL =
   "https://media.licdn.com/dms/image/v2/D4E03AQGsZgUFFqL7Zg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1725142645394?e=1777507200&v=beta&t=N4sIfRZ4XTtnaTuQT_kZaZlXN5yz4biCtu4IupFCzt8";
 
+type MessageStatus = "ok" | "error" | "rate_limit";
+
 interface Message {
   id: string;
   role: "user" | "assistant";
   text: string;
+  status?: MessageStatus;
+  /** Original user text that triggered this assistant message, used for retry */
+  retryText?: string;
 }
 
 function AssistantAvatar() {
@@ -61,30 +66,48 @@ export function DigitalTwinChat() {
     return () => abortRef.current?.abort();
   }, []);
 
-  async function sendMessage(text: string) {
+  async function sendMessage(text: string, retryAssistantId?: string) {
     if (!text.trim() || isLoading) return;
 
-    const userMessage: Message = {
-      id: crypto.randomUUID(),
-      role: "user",
-      text: text.trim(),
-    };
-    const assistantId = crypto.randomUUID();
-    const assistantMessage: Message = {
-      id: assistantId,
-      role: "assistant",
-      text: "",
-    };
+    let assistantId: string;
 
-    setMessages((prev) => [...prev, userMessage, assistantMessage]);
-    setInput("");
+    if (retryAssistantId) {
+      // Retry: reset the existing assistant message to loading state
+      assistantId = retryAssistantId;
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? { ...m, text: "", status: undefined }
+            : m
+        )
+      );
+    } else {
+      // New conversation turn
+      const userMessage: Message = {
+        id: crypto.randomUUID(),
+        role: "user",
+        text: text.trim(),
+      };
+      assistantId = crypto.randomUUID();
+      const assistantMessage: Message = {
+        id: assistantId,
+        role: "assistant",
+        text: "",
+        retryText: text.trim(),
+      };
+      setMessages((prev) => [...prev, userMessage, assistantMessage]);
+      setInput("");
+    }
+
     setIsLoading(true);
 
-    // Build history excluding the new user message
-    const history: ConversationMessage[] = messages.map((m) => ({
-      role: m.role === "user" ? "user" : "model",
-      text: m.text,
-    }));
+    // Build history: all messages up to (not including) the current assistant message
+    const history: ConversationMessage[] = messages
+      .filter((m) => m.id !== assistantId && m.status !== "error" && m.status !== "rate_limit")
+      .map((m) => ({
+        role: m.role === "user" ? "user" : "model",
+        text: m.text,
+      }));
 
     const controller = new AbortController();
     abortRef.current = controller;
@@ -101,10 +124,7 @@ export function DigitalTwinChat() {
         setMessages((prev) =>
           prev.map((m) =>
             m.id === assistantId
-              ? {
-                  ...m,
-                  text: "You've sent a few messages — I'll be back in a minute. In the meantime, feel free to reach out at oscar@oscartorres.co.",
-                }
+              ? { ...m, text: "", status: "rate_limit" }
               : m
           )
         );
@@ -112,7 +132,7 @@ export function DigitalTwinChat() {
       }
 
       if (!response.ok || !response.body) {
-        throw new Error("Bad response");
+        throw new Error(`HTTP ${response.status}`);
       }
 
       // Stream response chunks into the assistant message
@@ -133,16 +153,21 @@ export function DigitalTwinChat() {
           )
         );
       }
+
+      // Mark success (keeps text as-is, clears any prior error status)
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId ? { ...m, status: "ok" } : m
+        )
+      );
     } catch (err) {
       if (err instanceof Error && err.name === "AbortError") return;
 
+      // Clear any partial streamed content and mark as error
       setMessages((prev) =>
         prev.map((m) =>
           m.id === assistantId
-            ? {
-                ...m,
-                text: "Something went wrong on my end — feel free to reach out at oscar@oscartorres.co instead.",
-              }
+            ? { ...m, text: "", status: "error" }
             : m
         )
       );
@@ -196,16 +221,41 @@ export function DigitalTwinChat() {
                 className={`max-w-[80%] rounded-lg px-3.5 py-2.5 text-sm leading-relaxed ${
                   message.role === "user"
                     ? "bg-foreground text-background"
+                    : message.status === "error" || message.status === "rate_limit"
+                    ? "bg-muted/50 text-muted-foreground border border-border/60"
                     : "bg-muted text-foreground"
                 }`}
               >
-                {message.role === "assistant" && !message.text ? (
+                {message.role === "assistant" && !message.text && !message.status ? (
                   // Waiting for first streaming chunk
                   <div className="flex items-center gap-1 py-0.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.3s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.15s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce" />
                   </div>
+                ) : message.status === "rate_limit" ? (
+                  <span>
+                    You&apos;ve sent a few messages — I&apos;ll be back in a minute. In the meantime, feel free to reach out at{" "}
+                    <a href="mailto:oscar@oscartorres.co" className="underline underline-offset-2">
+                      oscar@oscartorres.co
+                    </a>
+                    .
+                  </span>
+                ) : message.status === "error" ? (
+                  <span className="flex items-center gap-2">
+                    <span>Something went wrong.</span>
+                    {message.retryText && (
+                      <button
+                        onClick={() => sendMessage(message.retryText!, message.id)}
+                        disabled={isLoading}
+                        className="inline-flex items-center gap-1 text-xs text-accent hover:opacity-80 disabled:opacity-40 transition-opacity"
+                        aria-label="Retry"
+                      >
+                        <RotateCcw size={12} />
+                        Retry
+                      </button>
+                    )}
+                  </span>
                 ) : message.role === "assistant" ? (
                   <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-code:text-accent prose-code:bg-background prose-code:px-1 prose-code:rounded prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
                     <ReactMarkdown>{message.text}</ReactMarkdown>
