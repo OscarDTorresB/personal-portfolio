@@ -95,7 +95,7 @@ A high-performance, accessible, and interactive portfolio website built for a Se
 
 **Oscar Torres**
 - *Senior Software Engineer*
-- [LinkedIn](https://www.linkedin.com/in/oscardtorresb/)
+- [LinkedIn](https://www.linkedin.com/in/oscartorresb/)
 - [GitHub](https://github.com/OscarDTorresB)
 
 ---
