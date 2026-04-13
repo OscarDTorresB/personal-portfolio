@@ -12,16 +12,16 @@ export const DATA = {
         github: "https://github.com/OscarDTorresB"
     },
     companies: [
+        { name: "Starbucks", color: "bg-green-700", logo: "/assets/logos/starbucks.png" },
         { name: "OPIS by Dow Jones", color: "bg-sky-600", logo: "/assets/logos/opis-dow-jones.png" },
-        { name: "EPAM", color: "bg-blue-600", logo: "/assets/logos/epam.png" },
-        { name: "The Body Shop", color: "bg-emerald-800", logo: "/assets/logos/thebodyshop.png" },
         { name: "Estée Lauder", color: "bg-slate-900", logo: "/assets/logos/estee-lauder.png" },
+        { name: "The Body Shop", color: "bg-emerald-800", logo: "/assets/logos/thebodyshop.png" },
     ],
     impact: [
-        { label: "CDA Appts/mo", value: "180", suffix: "+", sub: "500% Increase" },
-        { label: "Daily Users", value: "10k", suffix: "+", sub: "In core libraries" },
-        { label: "Test Coverage", value: "80", suffix: "%", sub: "Maintained at The Body Shop" },
-        { label: "Teams Led", value: "3", suffix: "", sub: "Shared Architecture" }
+        { label: "Appts/mo", value: "2k", suffix: "+", sub: "40% Increase via automation" },
+        { label: "Daily Users", value: "10k", suffix: "+", sub: "Tables & Charts platform" },
+        { label: "Bundle Size", value: "80", suffix: "%", sub: "Reduction at OPIS" },
+        { label: "No-show Rate", value: "70", suffix: "%", sub: "Reduction via reminders" }
     ],
     architecture: [
         {
@@ -40,7 +40,7 @@ export const DATA = {
             title: "CDA Management & Automation",
             description: "Comprehensive management system with advanced security architecture and marketing automation.",
             tech: ["Full Stack", "RBAC Security", "Process Automation"],
-            details: "Role-based architecture and reminder automation that skyrocketed virtual appointments from 30 to 180 monthly, directly impacting the client's ROI."
+            details: "Role-based architecture and automated WhatsApp reminders that increased monthly appointments by 40%, reduced no-shows by 70%, and now handle about 2,000 appointments per month."
         }
     ],
     bentoArchitecture: [
@@ -114,44 +114,54 @@ export const DATA = {
     ],
     experience: [
         {
-            company: "OPIS, A Dow Jones Company",
-            role: "Senior React Engineer / Tech Lead",
-            period: "June 2022 - November 2025",
-            description: "Spearheaded frontend architecture and technical direction for high-visibility React projects.",
+            company: "Starbucks",
+            role: "Senior Software Engineer",
+            period: "March 2026 - Present",
+            description: "Supporting the modernization of legacy React applications that power starbucks.com and the US rewards experience.",
             achievements: [
-                "Led the design of a specialized data-viz library for massive datasets using Web Components and Plotly.js.",
-                "Architected a private npm Design System used across 3 global teams, ensuring WCAG accessibility compliance.",
-                "Mentored junior and mid-level developers, establishing TDD and clean code best practices.",
-                "Successfully resolved critical performance bottlenecks."
+                "Supporting the modernization of legacy React applications that power starbucks.com and the US rewards experience through framework upgrades, maintenance, and new feature delivery.",
+                "Contributing to frontend improvements across customer-facing flows with a focus on maintainability, production support, and incremental migration of older code."
+            ]
+        },
+        {
+            company: "OPIS, A Dow Jones Company",
+            role: "Senior Software Engineer",
+            period: "June 2022 - November 2025",
+            description: "Architected frontend systems and platforms for high-visibility data products used by thousands of daily users.",
+            achievements: [
+                "Architected a microfrontend platform with React and web components that enabled isolated deployments, accelerated delivery, and was adopted across 2 product teams.",
+                "Built a shared React design system with private npm distribution and Storybook documentation that standardized UI development across 3 teams.",
+                "Reduced JavaScript bundle size by nearly 80% and improved load times by about 66% through targeted React and Vite optimization.",
+                "Developed a high-performance Excel-driven tables and charts platform used by about 10,000 daily users across CMA and McCloskey.",
+                "Increased test coverage from 0% to 70% with Jest, React Testing Library, and Cypress while leading legacy migration, onboarding, and shared package maintenance."
+            ]
+        },
+        {
+            company: "The Estée Lauder Companies",
+            role: "Software Engineer",
+            period: "February 2022 - June 2022",
+            description: "Developed and integrated frontend solutions for LATAM ecommerce sites across multiple regional brands.",
+            achievements: [
+                "Developed and integrated a new checkout experience for LATAM ecommerce sites, delivering a refreshed interface for multiple regional brands.",
+                "Improved frontend security by identifying vulnerable React dependencies, upgrading affected packages, and refactoring component implementations to safer alternatives.",
+                "Supported onboarding improvements and frontend maintenance across Drupal-based ecommerce experiences used by LATAM markets."
             ]
         },
         {
             company: "The Body Shop",
-            role: "Software Engineer",
-            period: "January 2021 - January 2022",
-            description: "Drove the digital transformation and migration of the core e-commerce platform.",
+            role: "Frontend Software Engineer",
+            period: "February 2021 - February 2022",
+            description: "Built core user experiences and enrollment flows for a global direct-sales e-commerce platform.",
             achievements: [
-                "Implemented complex state management for the global shopping cart using React Context and Hooks.",
-                "Achieved and maintained a testing coverage of over 80% using React Testing Library.",
-                "Promoted early due to exceptional delivery quality and technical initiative.",
-                "Migrated legacy codebase to a modern TypeScript/React stack."
-            ]
-        },
-        {
-            company: "SIICOING",
-            role: "Full Stack Developer",
-            period: "June 2020 - January 2021",
-            description: "Specialized in internal tool optimization and UX redesign.",
-            achievements: [
-                "Redesigned mission-critical internal applications, improving UX/UI accessibility.",
-                "Increased process efficiency through user-centric feature enhancements.",
-                "Optimized database queries and API response times for internal reporting tools."
+                "Built the consultant enrollment flow with React and TypeScript, partnering with backend engineers to define secure contracts and a scalable multi-step architecture.",
+                "Owned the My Profile experience end to end, adding intuitive account management, purchase history filters, and infinite scrolling to improve navigation and usability.",
+                "Supported stakeholder demos and coordinated frontend delivery plans that enabled parallel development across multiple steps of a shared user journey."
             ]
         }
     ],
     education: [
-        { title: "Claude Certified Architect – Foundations", institution: "Anthropic", year: "2025", details: "Validates hands-on knowledge of the Claude API, Claude Agent SDK, Claude Code, and Model Context Protocol (MCP).", link: "https://verify.skilljar.com/c/wm4i64zqtwqy" },
-        { title: "Advanced React", institution: "Meta", year: "2023", details: "Patterns, performance, and advanced testing." },
-        { title: "Full Stack Developer", institution: "Soy Henry", year: "2021", details: "Full Stack intensive program (JS, Node, React)." }
+        { title: "Claude Certified Architect - Foundations", institution: "Anthropic", year: "2025", details: "Validates hands-on knowledge of the Claude API, Claude Agent SDK, Claude Code, and Model Context Protocol (MCP).", link: "https://verify.skilljar.com/c/wm4i64zqtwqy" },
+        { title: "Advanced React", institution: "Meta", year: "2023", details: "Patterns, performance, and advanced testing.", link: "https://coursera.org/verify/PFLHUXYY9PEL" },
+        { title: "BSc in Systems Engineering", institution: "EAN University", year: "In Progress", details: "Undergraduate degree in Systems Engineering." }
     ]
 };
