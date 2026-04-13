@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Oscar Torres | Senior Software Engineer & Tech Lead";
+export const alt = "Oscar Torres | Senior Software Engineer";
 export const size = {
   width: 1200,
   height: 630,
@@ -19,7 +19,7 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "56px",
-          background: "linear-gradient(135deg, #0f172a 0%, #111827 40%, #0c4a6e 100%)",
+          background: "linear-gradient(135deg, #0C0C0B 0%, #111110 40%, #1C1409 100%)",
           color: "#f8fafc",
           fontFamily: "Arial, sans-serif",
         }}
@@ -38,10 +38,10 @@ export default function OpenGraphImage() {
               width: 14,
               height: 14,
               borderRadius: 999,
-              background: "#38bdf8",
+              background: "#D97706",
             }}
           />
-          Tech Lead and Software Architect
+          Senior Software Engineer
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
@@ -54,10 +54,10 @@ export default function OpenGraphImage() {
               letterSpacing: -2,
             }}
           >
-            Premium Software Engineering.
+            Software Architecture & AI Systems.
           </div>
           <div style={{ display: "flex", fontSize: 34, opacity: 0.88, maxWidth: "92%" }}>
-            Building scalable, high-performance web systems with React, Next.js and technical leadership.
+            Building fast, accessible web applications and AI-powered tools.
           </div>
         </div>
 

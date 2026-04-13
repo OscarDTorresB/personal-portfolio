@@ -1,6 +1,6 @@
 # Oscar Torres - Professional Portfolio 🚀
 
-A high-performance, accessible, and interactive portfolio website built for a Senior Software Engineer & Tech Lead. This project showcases advanced React patterns, clean architecture, and AI integration.
+A high-performance, accessible, and interactive portfolio website built for a Senior Software Engineer. This project showcases advanced React patterns, clean architecture, and AI integration.
 
 ## ✨ key Features
 
@@ -94,7 +94,7 @@ A high-performance, accessible, and interactive portfolio website built for a Se
 ## 👨‍💻 Author
 
 **Oscar Torres**
-- *Senior Software Engineer & Tech Lead*
+- *Senior Software Engineer*
 - [LinkedIn](https://www.linkedin.com/in/oscardtorresb/)
 - [GitHub](https://github.com/OscarDTorresB)
 

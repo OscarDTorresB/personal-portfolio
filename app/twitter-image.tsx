@@ -19,22 +19,22 @@ export default function TwitterImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "56px",
-          background: "linear-gradient(135deg, #082f49 0%, #0f172a 55%, #020617 100%)",
+          background: "linear-gradient(135deg, #0C0C0B 0%, #111110 40%, #1C1409 100%)",
           color: "#f8fafc",
           fontFamily: "Arial, sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, opacity: 0.9 }}>Senior Software Engineer and Tech Lead</div>
+        <div style={{ display: "flex", fontSize: 28, opacity: 0.9 }}>Senior Software Engineer</div>
         <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
           <div style={{ display: "flex", fontSize: 82, lineHeight: 0.95, fontWeight: 800, letterSpacing: -2 }}>
             Oscar Torres
           </div>
-          <div style={{ display: "flex", fontSize: 42, fontWeight: 600, color: "#38bdf8" }}>
-            React and Next.js Architecture
+          <div style={{ display: "flex", fontSize: 42, fontWeight: 600, color: "#D97706" }}>
+            React Architecture & AI Systems
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", fontSize: 28, opacity: 0.88 }}>Performance. Scale. Leadership.</div>
+          <div style={{ display: "flex", fontSize: 28, opacity: 0.88 }}>Performance. Scale. AI.</div>
           <div style={{ display: "flex", fontSize: 26, opacity: 0.82 }}>oscartorres.co</div>
         </div>
       </div>
