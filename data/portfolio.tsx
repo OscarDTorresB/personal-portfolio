@@ -6,7 +6,7 @@ export const DATA = {
         name: "Oscar Torres",
         role: "Senior Software Engineer",
         location: "Colombia",
-        bio: "Senior Software Engineer specializing in the React ecosystem. I focus on writing clean, testable code and building accessible (WCAG) user interfaces that perform flawlessly at scale.",
+        bio: "Senior Frontend Engineer specializing in the React ecosystem, with a growing focus on AI-powered systems. I build clean, testable, and accessible interfaces and architect solutions that leverage modern AI capabilities — from Claude API integrations to agentic workflows.",
         email: "oscar@oscartorres.co",
         linkedin: "https://www.linkedin.com/in/oscardtorresb/",
         github: "https://github.com/OscarDTorresB"
@@ -150,6 +150,7 @@ export const DATA = {
         }
     ],
     education: [
+        { title: "Claude Certified Architect – Foundations", institution: "Anthropic", year: "2025", details: "Validates hands-on knowledge of the Claude API, Claude Agent SDK, Claude Code, and Model Context Protocol (MCP).", link: "https://verify.skilljar.com/c/wm4i64zqtwqy" },
         { title: "Advanced React", institution: "Meta", year: "2023", details: "Patterns, performance, and advanced testing." },
         { title: "Full Stack Developer", institution: "Soy Henry", year: "2021", details: "Full Stack intensive program (JS, Node, React)." }
     ]

@@ -13,7 +13,7 @@ export const Hero = () => (
             >
                 <FadeIn>
                     <Badge variant="outline" className="inline-flex items-center gap-2 px-3 py-1 border-sky-500/20 text-sky-500 text-[10px] font-black uppercase tracking-widest mb-8 bg-sky-500/10">
-                        <Sparkles size={12} /> Tech Lead & Software Architect
+                        <Sparkles size={12} /> Frontend Lead & AI Integration
                     </Badge>
                 </FadeIn>
                 <FadeIn
@@ -28,7 +28,7 @@ export const Hero = () => (
                     delay={0.2}
                     className="text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed"
                 >
-                    Senior Software Engineer specialized in React & Next.js. I blend technical precision with architectural best practices to build pixel-perfect, scalable web interfaces.
+                    Senior Frontend Engineer specialized in React & Next.js, with a growing focus on AI-powered systems. I blend frontend precision with AI integrations — from Claude API to agentic workflows — to ship interfaces that are both flawless and intelligent.
                 </FadeIn>
                 <FadeIn
                     delay={0.3}
