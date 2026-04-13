@@ -1,12 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Send } from "lucide-react";
-import { GoogleGenAI, Modality, type Session, type LiveServerMessage } from "@google/genai";
 import { DATA } from "@/data/portfolio";
-import { getLiveSessionToken } from "@/lib/gemini";
-
-const LIVE_MODEL = "gemini-3.1-flash-live-preview";
+import type { ConversationMessage } from "@/lib/gemini";
 
 interface Message {
   id: string;
@@ -20,10 +17,7 @@ export function DigitalTwinChat() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const sessionRef = useRef<Session | null>(null);
-  const pendingIdRef = useRef<string | null>(null);
-  const accumulatedRef = useRef<string>("");
+  const abortRef = useRef<AbortController | null>(null);
 
   const hasStarted = messages.length > 0;
 
@@ -31,104 +25,9 @@ export function DigitalTwinChat() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  // Cleanup Live API session on unmount
+  // Abort any in-flight request on unmount
   useEffect(() => {
-    return () => {
-      sessionRef.current?.close();
-    };
-  }, []);
-
-  const initSession = useCallback(async () => {
-    if (sessionRef.current) return;
-
-    const tokenName = await getLiveSessionToken();
-
-    // Use ephemeral token as apiKey — API key never exposed to browser
-    const ai = new GoogleGenAI({
-      apiKey: tokenName,
-      httpOptions: { apiVersion: "v1alpha" },
-    });
-
-    const session = await ai.live.connect({
-      model: LIVE_MODEL,
-      config: { responseModalities: [Modality.TEXT] },
-      callbacks: {
-        onopen: () => {},
-
-        // Process ALL parts in each event (Live API best practice)
-        onmessage: (response: LiveServerMessage) => {
-          const content = response.serverContent;
-          if (!content) return;
-
-          if (content.modelTurn?.parts) {
-            for (const part of content.modelTurn.parts) {
-              if (part.text && pendingIdRef.current) {
-                accumulatedRef.current += part.text;
-                const id = pendingIdRef.current;
-                const text = accumulatedRef.current;
-                setMessages((prev) =>
-                  prev.map((m) => (m.id === id ? { ...m, text } : m))
-                );
-              }
-            }
-          }
-
-          if (content.turnComplete) {
-            pendingIdRef.current = null;
-            accumulatedRef.current = "";
-            setIsLoading(false);
-            inputRef.current?.focus();
-          }
-
-          // Clear audio playback queues on interruption (Live API best practice)
-          if (content.interrupted) {
-            pendingIdRef.current = null;
-            accumulatedRef.current = "";
-            setIsLoading(false);
-          }
-        },
-
-        onerror: () => {
-          const id = pendingIdRef.current;
-          if (id) {
-            setMessages((prev) =>
-              prev.map((m) =>
-                m.id === id
-                  ? {
-                      ...m,
-                      text: "Something went wrong on my end — feel free to reach out at oscar@oscartorres.co instead.",
-                    }
-                  : m
-              )
-            );
-          }
-          pendingIdRef.current = null;
-          accumulatedRef.current = "";
-          setIsLoading(false);
-          sessionRef.current = null;
-        },
-
-        onclose: () => {
-          sessionRef.current = null;
-          // If response was in-flight when session closed, show error only if empty
-          const id = pendingIdRef.current;
-          if (id) {
-            setMessages((prev) =>
-              prev.map((m) =>
-                m.id === id && !m.text
-                  ? { ...m, text: "Connection closed. Please try again." }
-                  : m
-              )
-            );
-            pendingIdRef.current = null;
-            accumulatedRef.current = "";
-            setIsLoading(false);
-          }
-        },
-      },
-    });
-
-    sessionRef.current = session;
+    return () => abortRef.current?.abort();
   }, []);
 
   async function sendMessage(text: string) {
@@ -150,23 +49,73 @@ export function DigitalTwinChat() {
     setInput("");
     setIsLoading(true);
 
-    pendingIdRef.current = assistantId;
-    accumulatedRef.current = "";
+    // Build history excluding the new user message
+    const history: ConversationMessage[] = messages.map((m) => ({
+      role: m.role === "user" ? "user" : "model",
+      text: m.text,
+    }));
+
+    const controller = new AbortController();
+    abortRef.current = controller;
 
     try {
-      await initSession();
-      // Send text via sendRealtimeInput (Live API best practice for all real-time input)
-      sessionRef.current!.sendRealtimeInput({ text: text.trim() });
-    } catch (error) {
-      const errorText =
-        error instanceof Error && error.message === "rate_limit"
-          ? "You've sent a few messages — I'll be back in a minute. In the meantime, feel free to reach out at oscar@oscartorres.co."
-          : "Something went wrong on my end — feel free to reach out at oscar@oscartorres.co instead.";
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text.trim(), history }),
+        signal: controller.signal,
+      });
+
+      if (response.status === 429) {
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId
+              ? {
+                  ...m,
+                  text: "You've sent a few messages — I'll be back in a minute. In the meantime, feel free to reach out at oscar@oscartorres.co.",
+                }
+              : m
+          )
+        );
+        return;
+      }
+
+      if (!response.ok || !response.body) {
+        throw new Error("Bad response");
+      }
+
+      // Stream response chunks into the assistant message
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulated = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        accumulated += decoder.decode(value, { stream: true });
+        const snapshot = accumulated;
+
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId ? { ...m, text: snapshot } : m
+          )
+        );
+      }
+    } catch (err) {
+      if (err instanceof Error && err.name === "AbortError") return;
 
       setMessages((prev) =>
-        prev.map((m) => (m.id === assistantId ? { ...m, text: errorText } : m))
+        prev.map((m) =>
+          m.id === assistantId
+            ? {
+                ...m,
+                text: "Something went wrong on my end — feel free to reach out at oscar@oscartorres.co instead.",
+              }
+            : m
+        )
       );
-      pendingIdRef.current = null;
+    } finally {
       setIsLoading(false);
       inputRef.current?.focus();
     }
