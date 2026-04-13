@@ -1,21 +1,38 @@
-import Link from "next/link";
+"use client";
 
-export const Nav = () => {
-    return (
-        <nav className="fixed top-0 w-full z-50 border-b bg-background/80 backdrop-blur-md">
-            <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-sky-600 rounded-lg flex items-center justify-center text-white font-bold">O</div>
-                    <Link href='#' className="font-bold text-xl tracking-tighter">OSCAR<span className="text-sky-500">.</span>ENGINEERING</Link>
-                </div>
-                <div className="flex items-center gap-6">
-                    <div className="hidden md:flex gap-6 text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                        <Link href="#experience" className="hover:text-sky-500 transition-colors">Experience</Link>
-                        <Link href="#architecture" className="hover:text-sky-500 transition-colors">Stack</Link>
-                        <Link href="#advisor" className="hover:text-sky-500 transition-colors">AI Advisor</Link>
-                    </div>
-                </div>
-            </div>
+import Link from "next/link";
+import { DATA } from "@/data/portfolio";
+
+const navLinks = [
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Ask Oscar", href: "#digital-twin" },
+];
+
+export function Nav() {
+  return (
+    <header className="sticky top-0 z-50 bg-background border-b border-border">
+      <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
+        <Link
+          href="/"
+          className="font-semibold text-foreground tracking-tight hover:text-accent transition-colors"
+        >
+          {DATA.profile.name}
+        </Link>
+
+        <nav className="hidden sm:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
-    );
-};
+      </div>
+    </header>
+  );
+}

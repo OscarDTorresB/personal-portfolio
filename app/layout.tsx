@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://oscartorres.co";
@@ -17,16 +16,25 @@ const geistMono = Geist_Mono({
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#1a1d2e' },
+    { media: "(prefers-color-scheme: light)", color: "#FAFAF9" },
+    { media: "(prefers-color-scheme: dark)", color: "#0C0C0B" },
   ],
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Oscar Torres | Senior Software Engineer & Tech Lead",
-  description: "Portfolio of Oscar Torres, a Senior Software Engineer specializing in Frontend Architecture, React Performance, and Technical Leadership.",
-  keywords: ["Oscar Torres", "Software Engineer", "Tech Lead", "React", "Next.js", "Frontend Architecture", "Web Components", "Performance"],
+  title: "Oscar Torres | Senior Software Engineer",
+  description:
+    "Senior Software Engineer specializing in React, frontend architecture, and AI-powered systems. Based in Colombia.",
+  keywords: [
+    "Oscar Torres",
+    "Software Engineer",
+    "React",
+    "Next.js",
+    "Frontend Architecture",
+    "AI",
+    "TypeScript",
+  ],
   authors: [{ name: "Oscar Torres" }],
   icons: {
     icon: "/favicon.ico",
@@ -48,7 +56,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Oscar Torres | Senior Software Engineer",
-    description: "Building scalable, high-performance web systems.",
+    description:
+      "Senior Software Engineer specializing in React, frontend architecture, and AI-powered systems.",
     type: "website",
     locale: "en_US",
     siteName: "Oscar Torres Portfolio",
@@ -58,16 +67,15 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Oscar Torres | Senior Software Engineer & Tech Lead",
+        alt: "Oscar Torres | Senior Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Oscar Torres | Senior Software Engineer",
-    description: "Building scalable, high-performance web systems.",
-    creator: "@oscartorres",
-    site: "@oscartorres",
+    description:
+      "Senior Software Engineer specializing in React, frontend architecture, and AI-powered systems.",
     images: ["/twitter-image.png"],
   },
 };
@@ -83,7 +91,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
       >
         {children}
-        <Toaster position="bottom-right" />
       </body>
     </html>
   );
