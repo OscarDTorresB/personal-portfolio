@@ -8,6 +8,11 @@ const MODEL = "gemini-2.5-flash";
 
 const rateLimitMap = new Map<string, { count: number; expires: number }>();
 
+interface HistoryMessage {
+  role: string;
+  text: string;
+}
+
 export async function POST(req: NextRequest) {
   const apiKey = process.env.GEMINI_API_KEY || "";
 
@@ -32,43 +37,55 @@ export async function POST(req: NextRequest) {
     rateLimitMap.set(ip, { count: 1, expires: now + RATE_LIMIT_WINDOW });
   }
 
-  const { message, history } = await req.json();
+  let message: string;
+  let history: HistoryMessage[];
+  try {
+    ({ message, history } = await req.json());
+  } catch (err) {
+    console.error("[chat] failed to parse request body:", err);
+    return new Response("Bad request", { status: 400 });
+  }
 
   const ai = new GoogleGenAI({ apiKey });
 
   const contents = [
-    ...(history ?? []).map((m: { role: string; text: string }) => ({
+    ...(history ?? []).map((m: HistoryMessage) => ({
       role: m.role === "user" ? "user" : "model",
       parts: [{ text: m.text }],
     })),
     { role: "user", parts: [{ text: message }] },
   ];
 
-  const encoder = new TextEncoder();
+  const MAX_RETRIES = 3;
+  let attempt = 0;
 
-  const stream = new ReadableStream({
-    async start(controller) {
-      try {
-        const genStream = await ai.models.generateContentStream({
-          model: MODEL,
-          contents,
-          config: {
-            systemInstruction: DATA.digitalTwin.systemPrompt,
-          },
-        });
+  while (attempt <= MAX_RETRIES) {
+    try {
+      const result = await ai.models.generateContent({
+        model: MODEL,
+        contents,
+        config: {
+          systemInstruction: DATA.digitalTwin.systemPrompt,
+        },
+      });
 
-        for await (const chunk of genStream) {
-          const text = chunk.text ?? "";
-          if (text) controller.enqueue(encoder.encode(text));
-        }
-        controller.close();
-      } catch (err) {
-        controller.error(err);
+      return Response.json({ text: result.text ?? "" });
+    } catch (err) {
+      const status = (err as { status?: number })?.status;
+      const isRetryable = status === 503 || status === 429;
+
+      if (isRetryable && attempt < MAX_RETRIES) {
+        const delay = 500 * 2 ** attempt; // 500ms, 1s, 2s
+        console.warn(`[chat] attempt ${attempt + 1} failed with ${status}, retrying in ${delay}ms`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        attempt++;
+        continue;
       }
-    },
-  });
 
-  return new Response(stream, {
-    headers: { "Content-Type": "text/plain; charset=utf-8" },
-  });
+      console.error(`[chat] generateContent failed after ${attempt + 1} attempt(s):`, err);
+      return new Response("Server error", { status: 500 });
+    }
+  }
+
+  return new Response("Server error", { status: 500 });
 }

@@ -4,7 +4,7 @@ export const DATA = {
     role: "Senior Software Engineer",
     location: "Colombia",
     tagline: "Senior Software Engineer building fast, accessible React applications and AI-powered agents and tools. Currently helping scale starbucks.com.",
-    bio: "Senior Software Engineer based in Colombia with 5+ years of experience building high-performance React applications and AI-powered systems. I specialize in frontend architecture, design systems, and performance optimization. Currently at Starbucks modernizing the React apps that power starbucks.com and the US Rewards experience. Previously at OPIS (Dow Jones), where I led frontend architecture work used daily by thousands of users.",
+    bio: "Senior Software Engineer based in Colombia with 6+ years of experience building high-performance React applications and AI-powered systems. I specialize in frontend architecture, design systems, and performance optimization. Currently at Starbucks modernizing the React apps that power starbucks.com and the US Rewards experience. Previously at OPIS (Dow Jones), where I led frontend architecture work used daily by thousands of users.",
     email: "oscar@oscartorres.co",
     linkedin: "https://www.linkedin.com/in/oscardtorresb/",
     github: "https://github.com/OscarDTorresB",
@@ -126,7 +126,7 @@ export const DATA = {
     },
   ],
   digitalTwin: {
-    systemPrompt: `You are Oscar Torres, a Senior Software Engineer based in Colombia with 5+ years of experience building high-performance React applications and, more recently, AI-powered systems.
+    systemPrompt: `You are Oscar Torres, a Senior Software Engineer based in Colombia with 6+ years of experience building high-performance React applications and, more recently, AI-powered systems.
 
 You speak in first person as Oscar. Sound like a real person having a conversation, not a chatbot or a resume. Be direct, specific, and genuine. Never use filler phrases like "Great question!", "Certainly!", "Of course!", or "I'd be happy to". Do not use em dashes. Write the way a confident engineer talks, not the way a press release reads. Keep it natural and to the point.
 

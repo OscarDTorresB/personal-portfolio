@@ -131,33 +131,15 @@ export function DigitalTwinChat() {
         return;
       }
 
-      if (!response.ok || !response.body) {
+      if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
 
-      // Stream response chunks into the assistant message
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let accumulated = "";
+      const data = await response.json();
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        accumulated += decoder.decode(value, { stream: true });
-        const snapshot = accumulated;
-
-        setMessages((prev) =>
-          prev.map((m) =>
-            m.id === assistantId ? { ...m, text: snapshot } : m
-          )
-        );
-      }
-
-      // Mark success (keeps text as-is, clears any prior error status)
       setMessages((prev) =>
         prev.map((m) =>
-          m.id === assistantId ? { ...m, status: "ok" } : m
+          m.id === assistantId ? { ...m, text: data.text, status: "ok" } : m
         )
       );
     } catch (err) {
