@@ -2,13 +2,44 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Send } from "lucide-react";
+import Image from "next/image";
 import { DATA } from "@/data/portfolio";
 import type { ConversationMessage } from "@/lib/gemini";
+import ReactMarkdown from "react-markdown";
+
+const AVATAR_URL =
+  "https://media.licdn.com/dms/image/v2/D4E03AQGsZgUFFqL7Zg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1725142645394?e=1777507200&v=beta&t=N4sIfRZ4XTtnaTuQT_kZaZlXN5yz4biCtu4IupFCzt8";
 
 interface Message {
   id: string;
   role: "user" | "assistant";
   text: string;
+}
+
+function AssistantAvatar() {
+  const [imgFailed, setImgFailed] = useState(false);
+
+  if (imgFailed) {
+    return (
+      <div className="w-7 h-7 rounded-full bg-accent text-accent-foreground text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+        OT
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 mt-0.5">
+      <Image
+        src={AVATAR_URL}
+        alt="Oscar Torres"
+        width={28}
+        height={28}
+        className="w-full h-full object-cover"
+        onError={() => setImgFailed(true)}
+        unoptimized
+      />
+    </div>
+  );
 }
 
 export function DigitalTwinChat() {
@@ -160,11 +191,7 @@ export function DigitalTwinChat() {
                 message.role === "user" ? "flex-row-reverse" : "flex-row"
               }`}
             >
-              {message.role === "assistant" && (
-                <div className="w-7 h-7 rounded-full bg-accent text-accent-foreground text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  OT
-                </div>
-              )}
+              {message.role === "assistant" && <AssistantAvatar />}
               <div
                 className={`max-w-[80%] rounded-lg px-3.5 py-2.5 text-sm leading-relaxed ${
                   message.role === "user"
@@ -178,6 +205,10 @@ export function DigitalTwinChat() {
                     <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.3s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.15s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce" />
+                  </div>
+                ) : message.role === "assistant" ? (
+                  <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-code:text-accent prose-code:bg-background prose-code:px-1 prose-code:rounded prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
+                    <ReactMarkdown>{message.text}</ReactMarkdown>
                   </div>
                 ) : (
                   message.text
