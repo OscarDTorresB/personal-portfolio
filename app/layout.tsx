@@ -38,7 +38,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Oscar Torres" }],
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+    ],
     apple: "/apple-touch-icon.png",
   },
   alternates: {
