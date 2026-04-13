@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Send } from "lucide-react";
+import { GoogleGenAI, Modality, type Session, type LiveServerMessage } from "@google/genai";
 import { DATA } from "@/data/portfolio";
-import { callGemini, type ConversationMessage } from "@/lib/gemini";
+import { getLiveSessionToken } from "@/lib/gemini";
+
+const LIVE_MODEL = "gemini-3.1-flash-live-preview";
 
 interface Message {
   id: string;
@@ -18,47 +21,152 @@ export function DigitalTwinChat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const sessionRef = useRef<Session | null>(null);
+  const pendingIdRef = useRef<string | null>(null);
+  const accumulatedRef = useRef<string>("");
+
   const hasStarted = messages.length > 0;
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
+  // Cleanup Live API session on unmount
+  useEffect(() => {
+    return () => {
+      sessionRef.current?.close();
+    };
+  }, []);
+
+  const initSession = useCallback(async () => {
+    if (sessionRef.current) return;
+
+    const tokenName = await getLiveSessionToken();
+
+    // Use ephemeral token as apiKey — API key never exposed to browser
+    const ai = new GoogleGenAI({
+      apiKey: tokenName,
+      httpOptions: { apiVersion: "v1alpha" },
+    });
+
+    const session = await ai.live.connect({
+      model: LIVE_MODEL,
+      config: { responseModalities: [Modality.TEXT] },
+      callbacks: {
+        onopen: () => {},
+
+        // Process ALL parts in each event (Live API best practice)
+        onmessage: (response: LiveServerMessage) => {
+          const content = response.serverContent;
+          if (!content) return;
+
+          if (content.modelTurn?.parts) {
+            for (const part of content.modelTurn.parts) {
+              if (part.text && pendingIdRef.current) {
+                accumulatedRef.current += part.text;
+                const id = pendingIdRef.current;
+                const text = accumulatedRef.current;
+                setMessages((prev) =>
+                  prev.map((m) => (m.id === id ? { ...m, text } : m))
+                );
+              }
+            }
+          }
+
+          if (content.turnComplete) {
+            pendingIdRef.current = null;
+            accumulatedRef.current = "";
+            setIsLoading(false);
+            inputRef.current?.focus();
+          }
+
+          // Clear audio playback queues on interruption (Live API best practice)
+          if (content.interrupted) {
+            pendingIdRef.current = null;
+            accumulatedRef.current = "";
+            setIsLoading(false);
+          }
+        },
+
+        onerror: () => {
+          const id = pendingIdRef.current;
+          if (id) {
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === id
+                  ? {
+                      ...m,
+                      text: "Something went wrong on my end — feel free to reach out at oscar@oscartorres.co instead.",
+                    }
+                  : m
+              )
+            );
+          }
+          pendingIdRef.current = null;
+          accumulatedRef.current = "";
+          setIsLoading(false);
+          sessionRef.current = null;
+        },
+
+        onclose: () => {
+          sessionRef.current = null;
+          // If response was in-flight when session closed, show error only if empty
+          const id = pendingIdRef.current;
+          if (id) {
+            setMessages((prev) =>
+              prev.map((m) =>
+                m.id === id && !m.text
+                  ? { ...m, text: "Connection closed. Please try again." }
+                  : m
+              )
+            );
+            pendingIdRef.current = null;
+            accumulatedRef.current = "";
+            setIsLoading(false);
+          }
+        },
+      },
+    });
+
+    sessionRef.current = session;
+  }, []);
+
   async function sendMessage(text: string) {
     if (!text.trim() || isLoading) return;
 
     const userMessage: Message = {
-      id: Date.now().toString(),
+      id: crypto.randomUUID(),
       role: "user",
       text: text.trim(),
     };
+    const assistantId = crypto.randomUUID();
+    const assistantMessage: Message = {
+      id: assistantId,
+      role: "assistant",
+      text: "",
+    };
 
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage, assistantMessage]);
     setInput("");
     setIsLoading(true);
 
-    // Build conversation history for the API (excluding the new user message we just added)
-    const history: ConversationMessage[] = messages.map((m) => ({
-      role: m.role === "user" ? "user" : "model",
-      text: m.text,
-    }));
+    pendingIdRef.current = assistantId;
+    accumulatedRef.current = "";
 
     try {
-      const response = await callGemini(text.trim(), history);
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: "assistant",
-        text: response,
-      };
-      setMessages((prev) => [...prev, assistantMessage]);
-    } catch {
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: "assistant",
-        text: "Something went wrong on my end — feel free to reach out at oscar@oscartorres.co instead.",
-      };
-      setMessages((prev) => [...prev, errorMessage]);
-    } finally {
+      await initSession();
+      // Send text via sendRealtimeInput (Live API best practice for all real-time input)
+      sessionRef.current!.sendRealtimeInput({ text: text.trim() });
+    } catch (error) {
+      const errorText =
+        error instanceof Error && error.message === "rate_limit"
+          ? "You've sent a few messages — I'll be back in a minute. In the meantime, feel free to reach out at oscar@oscartorres.co."
+          : "Something went wrong on my end — feel free to reach out at oscar@oscartorres.co instead.";
+
+      setMessages((prev) =>
+        prev.map((m) => (m.id === assistantId ? { ...m, text: errorText } : m))
+      );
+      pendingIdRef.current = null;
       setIsLoading(false);
       inputRef.current?.focus();
     }
@@ -115,32 +223,26 @@ export function DigitalTwinChat() {
                     : "bg-muted text-foreground"
                 }`}
               >
-                {message.text}
+                {message.role === "assistant" && !message.text ? (
+                  // Waiting for first streaming chunk
+                  <div className="flex items-center gap-1 py-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce" />
+                  </div>
+                ) : (
+                  message.text
+                )}
               </div>
             </div>
           ))}
-
-          {isLoading && (
-            <div className="flex gap-3">
-              <div className="w-7 h-7 rounded-full bg-accent text-accent-foreground text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                OT
-              </div>
-              <div className="bg-muted rounded-lg px-3.5 py-3 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.3s]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.15s]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground animate-bounce" />
-              </div>
-            </div>
-          )}
 
           <div ref={messagesEndRef} />
         </div>
       )}
 
       {/* Input */}
-      <div
-        className={`p-4 ${hasStarted ? "border-t border-border" : ""}`}
-      >
+      <div className={`p-4 ${hasStarted ? "border-t border-border" : ""}`}>
         <div className="flex items-center gap-2">
           <input
             ref={inputRef}
