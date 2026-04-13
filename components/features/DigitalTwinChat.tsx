@@ -220,7 +220,7 @@ export function DigitalTwinChat() {
               <div
                 className={`max-w-[80%] rounded-lg px-3.5 py-2.5 text-sm leading-relaxed ${
                   message.role === "user"
-                    ? "bg-foreground text-background"
+                    ? "bg-accent text-accent-foreground"
                     : message.status === "error" || message.status === "rate_limit"
                     ? "bg-muted/50 text-muted-foreground border border-border/60"
                     : "bg-muted text-foreground"
