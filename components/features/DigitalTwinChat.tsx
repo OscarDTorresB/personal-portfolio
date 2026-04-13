@@ -239,9 +239,23 @@ export function DigitalTwinChat() {
                     )}
                   </span>
                 ) : message.role === "assistant" ? (
-                  <div className="prose prose-sm dark:prose-invert max-w-none prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-code:text-accent prose-code:bg-background prose-code:px-1 prose-code:rounded prose-a:text-accent prose-a:no-underline hover:prose-a:underline">
-                    <ReactMarkdown>{message.text}</ReactMarkdown>
-                  </div>
+                  <ReactMarkdown
+                    components={{
+                      p: ({ children }) => <p className="my-1">{children}</p>,
+                      ul: ({ children }) => <ul className="my-1 ml-4 list-disc space-y-0.5">{children}</ul>,
+                      ol: ({ children }) => <ol className="my-1 ml-4 list-decimal space-y-0.5">{children}</ol>,
+                      li: ({ children }) => <li>{children}</li>,
+                      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                      em: ({ children }) => <em className="italic">{children}</em>,
+                      h1: ({ children }) => <h1 className="text-base font-bold my-2">{children}</h1>,
+                      h2: ({ children }) => <h2 className="text-sm font-bold my-2">{children}</h2>,
+                      h3: ({ children }) => <h3 className="text-sm font-semibold my-1">{children}</h3>,
+                      code: ({ children }) => <code className="text-accent bg-black/10 dark:bg-white/10 px-1 rounded text-xs font-mono">{children}</code>,
+                      a: ({ href, children }) => <a href={href} className="text-accent underline underline-offset-2" target="_blank" rel="noopener noreferrer">{children}</a>,
+                    }}
+                  >
+                    {message.text}
+                  </ReactMarkdown>
                 ) : (
                   message.text
                 )}
