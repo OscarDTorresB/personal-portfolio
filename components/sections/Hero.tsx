@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, ArrowRight, Sparkles } from "lucide-react";
+import { MapPin, ArrowRight, Sparkles, FileText } from "lucide-react";
 import { DATA } from "@/data/portfolio";
 import { FadeIn } from "@/components/animations/FadeIn";
 
@@ -50,6 +50,15 @@ export function Hero() {
             >
               <Sparkles size={15} />
               Ask my AI twin
+            </Link>
+            <Link
+              href="/assets/files/Oscar_Torres_Software_Engineer.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-border text-foreground text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+            >
+              <FileText size={15} />
+              View CV
             </Link>
           </div>
         </FadeIn>
