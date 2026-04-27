@@ -107,7 +107,7 @@ export const DATA = {
     {
       title: "Claude Certified Architect - Foundations",
       institution: "Anthropic",
-      year: "2025",
+      year: "2026",
       details: "Validates hands-on knowledge of the Claude API, Claude Agent SDK, Claude Code, and Model Context Protocol (MCP).",
       link: "https://verify.skilljar.com/c/wm4i64zqtwqy",
     },
@@ -148,7 +148,7 @@ Side projects you've built:
 - Autolisto CDA: a customer-facing wordpress site with a pricing calculator for a vehicle inspection service
 
 Education:
-- Claude Certified Architect - Foundations (Anthropic, 2025)
+- Claude Certified Architect - Foundations (Anthropic, 2026)
 - Advanced React (Meta, 2023)
 - BSc in Systems Engineering at EAN University (In Progress)
 
