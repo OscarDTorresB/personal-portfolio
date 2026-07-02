@@ -5,7 +5,7 @@ export const DATA = {
     location: "Colombia",
     headline: "Software engineer building AI products end to end",
     subline: "Full stack · AI & LLM systems · React & TypeScript",
-    tagline: "I design, ship and run the whole thing — design systems to serverless. Currently modernizing the React applications behind starbucks.com.",
+    tagline: "I design, ship and run the whole thing, from design systems to serverless. Currently modernizing the React applications behind starbucks.com.",
     bio: "Senior Software Engineer based in Colombia with 6+ years of experience building high-performance React applications and AI-powered systems. I specialize in frontend architecture, design systems, and performance optimization. Currently at Starbucks modernizing the React apps that power starbucks.com and the US Rewards experience. Previously at OPIS (Dow Jones), where I led frontend architecture work used daily by thousands of users.",
     email: "oscar@oscartorres.co",
     linkedin: "https://www.linkedin.com/in/oscardtorresb/",

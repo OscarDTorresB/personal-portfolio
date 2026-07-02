@@ -217,7 +217,7 @@ export function DigitalTwinChat() {
                   </div>
                 ) : message.status === "rate_limit" ? (
                   <span>
-                    You&apos;ve sent a few messages — I&apos;ll be back in a minute. In the meantime, feel free to reach out at{" "}
+                    You&apos;ve sent a few messages. I&apos;ll be back in a minute. In the meantime, feel free to reach out at{" "}
                     <a href="mailto:oscar@oscartorres.co" className="underline underline-offset-2">
                       oscar@oscartorres.co
                     </a>

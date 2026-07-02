@@ -18,7 +18,7 @@ export function DigitalTwin() {
                 <span className="text-accent-warm">.</span>
               </>
             }
-            description="Trained on my full professional background — experience, technical decisions, and working style. Ask it anything you'd ask me in a screening call. I'll follow up personally if you reach out."
+            description="Trained on my full professional background: experience, technical decisions, and working style. Ask it anything you'd ask me in a screening call. I'll follow up personally if you reach out."
           />
         </FadeIn>
 

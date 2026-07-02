@@ -11,7 +11,7 @@ export function Projects() {
           <SectionHeading
             overline="Selected work"
             title="Things I've shipped"
-            description="Side projects running in production — real users, real uptime, real numbers."
+            description="Side projects running in production: real users, real uptime, real numbers."
           />
         </FadeIn>
 
