@@ -8,7 +8,14 @@ export const size = {
 };
 export const contentType = "image/png";
 
-export default function TwitterImage() {
+const SCHIBSTED_BOLD_URL =
+  "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMNxcYATw.ttf";
+
+export default async function TwitterImage() {
+  const schibsted = await fetch(SCHIBSTED_BOLD_URL).then((res) =>
+    res.arrayBuffer()
+  );
+
   return new ImageResponse(
     (
       <div
@@ -18,29 +25,76 @@ export default function TwitterImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "56px",
-          background: "linear-gradient(135deg, #0C0C0B 0%, #111110 40%, #1C1409 100%)",
-          color: "#f8fafc",
-          fontFamily: "Arial, sans-serif",
+          padding: "64px",
+          background: "#15191E",
+          color: "#FAFAF7",
+          fontFamily: "Schibsted Grotesk, Arial, sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 28, opacity: 0.9 }}>Senior Software Engineer</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-          <div style={{ display: "flex", fontSize: 82, lineHeight: 0.95, fontWeight: 800, letterSpacing: -2 }}>
-            Oscar Torres
-          </div>
-          <div style={{ display: "flex", fontSize: 42, fontWeight: 600, color: "#D97706" }}>
-            React Architecture & AI Systems
+        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+          <div
+            style={{
+              width: 56,
+              height: 8,
+              borderRadius: 999,
+              background: "#0E7C86",
+            }}
+          />
+          <div
+            style={{
+              display: "flex",
+              fontSize: 26,
+              letterSpacing: 3,
+              color: "#A7B0BA",
+            }}
+          >
+            SENIOR SOFTWARE ENGINEER
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", fontSize: 28, opacity: 0.88 }}>Performance. Scale. AI.</div>
-          <div style={{ display: "flex", fontSize: 26, opacity: 0.82 }}>oscartorres.co</div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 96,
+              lineHeight: 1,
+              fontWeight: 700,
+              letterSpacing: -2,
+            }}
+          >
+            Oscar Torres<span style={{ color: "#E0762E" }}>.</span>
+          </div>
+          <div style={{ display: "flex", fontSize: 34, color: "#A7B0BA" }}>
+            Full stack · AI &amp; LLM systems · React &amp; TypeScript
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ display: "flex", fontSize: 28, color: "#45B3BD" }}>
+            Quietly confident. Distinctly teal.
+          </div>
+          <div style={{ display: "flex", fontSize: 28, color: "#A7B0BA" }}>
+            oscartorres.co
+          </div>
         </div>
       </div>
     ),
     {
       ...size,
+      fonts: [
+        {
+          name: "Schibsted Grotesk",
+          data: schibsted,
+          weight: 700,
+          style: "normal",
+        },
+      ],
     }
   );
 }

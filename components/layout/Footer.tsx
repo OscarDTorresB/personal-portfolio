@@ -1,40 +1,42 @@
 import Link from "next/link";
-import { Mail, Linkedin, Github } from "lucide-react";
+import { Linkedin, Github } from "lucide-react";
 import { DATA } from "@/data/portfolio";
+import { Wordmark } from "@/components/ui/Wordmark";
+
+const socialLinks = [
+  { label: "LinkedIn", href: DATA.profile.linkedin, icon: Linkedin },
+  { label: "GitHub", href: DATA.profile.github, icon: Github },
+];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border mt-16">
+    <footer className="border-t border-border">
       <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} {DATA.profile.name}
-        </p>
-        <div className="flex items-center gap-6 text-sm text-muted-foreground">
+        <div className="flex items-center gap-3">
+          <Wordmark className="text-base" />
+          <span className="text-[13.5px] text-faint-foreground">
+            &copy; {new Date().getFullYear()}
+          </span>
+        </div>
+        <div className="flex items-center gap-5">
           <Link
             href={`mailto:${DATA.profile.email}`}
-            className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
+            className="text-sm text-muted-foreground hover:text-accent transition-colors"
           >
-            <Mail size={14} />
             {DATA.profile.email}
           </Link>
-          <Link
-            href={DATA.profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
-          >
-            <Linkedin size={14} />
-            LinkedIn
-          </Link>
-          <Link
-            href={DATA.profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-accent transition-colors"
-          >
-            <Github size={14} />
-            GitHub
-          </Link>
+          {socialLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              className="text-muted-foreground hover:text-accent transition-colors"
+            >
+              <link.icon size={19} strokeWidth={1.5} />
+            </Link>
+          ))}
         </div>
       </div>
     </footer>

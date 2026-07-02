@@ -8,7 +8,14 @@ export const size = {
 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+const SCHIBSTED_BOLD_URL =
+  "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMNxcYATw.ttf";
+
+export default async function OpenGraphImage() {
+  const schibsted = await fetch(SCHIBSTED_BOLD_URL).then((res) =>
+    res.arrayBuffer()
+  );
+
   return new ImageResponse(
     (
       <div
@@ -18,57 +25,80 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "56px",
-          background: "linear-gradient(135deg, #0C0C0B 0%, #111110 40%, #1C1409 100%)",
-          color: "#f8fafc",
-          fontFamily: "Arial, sans-serif",
+          padding: "64px",
+          background: "#15191E",
+          color: "#FAFAF7",
+          fontFamily: "Schibsted Grotesk, Arial, sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            fontSize: 28,
-            opacity: 0.9,
-          }}
-        >
+        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div
             style={{
-              width: 14,
-              height: 14,
+              width: 56,
+              height: 8,
               borderRadius: 999,
-              background: "#D97706",
+              background: "#0E7C86",
             }}
           />
-          Senior Software Engineer
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
           <div
             style={{
               display: "flex",
-              fontSize: 86,
-              lineHeight: 0.95,
-              fontWeight: 800,
-              letterSpacing: -2,
+              fontSize: 26,
+              letterSpacing: 3,
+              color: "#A7B0BA",
             }}
           >
-            Software Architecture & AI Systems.
-          </div>
-          <div style={{ display: "flex", fontSize: 34, opacity: 0.88, maxWidth: "92%" }}>
-            Building fast, accessible web applications and AI-powered tools.
+            SENIOR SOFTWARE ENGINEER
           </div>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", fontSize: 42, fontWeight: 700 }}>Oscar Torres</div>
-          <div style={{ display: "flex", fontSize: 26, opacity: 0.85 }}>oscartorres.co</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              fontSize: 76,
+              lineHeight: 1.08,
+              fontWeight: 700,
+              letterSpacing: -2,
+            }}
+          >
+            <div style={{ display: "flex" }}>Software engineer building</div>
+            <div style={{ display: "flex" }}>
+              AI products end to end<span style={{ color: "#E0762E" }}>.</span>
+            </div>
+          </div>
+          <div style={{ display: "flex", fontSize: 32, color: "#A7B0BA" }}>
+            Full stack · AI &amp; LLM systems · React &amp; TypeScript
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ display: "flex", fontSize: 38, fontWeight: 700 }}>
+            Oscar Torres<span style={{ color: "#E0762E" }}>.</span>
+          </div>
+          <div style={{ display: "flex", fontSize: 28, color: "#A7B0BA" }}>
+            oscartorres.co
+          </div>
         </div>
       </div>
     ),
     {
       ...size,
+      fonts: [
+        {
+          name: "Schibsted Grotesk",
+          data: schibsted,
+          weight: 700,
+          style: "normal",
+        },
+      ],
     }
   );
 }

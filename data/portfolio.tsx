@@ -3,7 +3,9 @@ export const DATA = {
     name: "Oscar Torres",
     role: "Senior Software Engineer",
     location: "Colombia",
-    tagline: "Senior Software Engineer building fast, accessible React applications and AI-powered agents and tools. Currently helping scale starbucks.com.",
+    headline: "Software engineer building AI products end to end",
+    subline: "Full stack · AI & LLM systems · React & TypeScript",
+    tagline: "I design, ship and run the whole thing — design systems to serverless. Currently modernizing the React applications behind starbucks.com.",
     bio: "Senior Software Engineer based in Colombia with 6+ years of experience building high-performance React applications and AI-powered systems. I specialize in frontend architecture, design systems, and performance optimization. Currently at Starbucks modernizing the React apps that power starbucks.com and the US Rewards experience. Previously at OPIS (Dow Jones), where I led frontend architecture work used daily by thousands of users.",
     email: "oscar@oscartorres.co",
     linkedin: "https://www.linkedin.com/in/oscardtorresb/",
@@ -76,6 +78,7 @@ export const DATA = {
       name: "Autolisto Appointments",
       url: "https://appointments-autolisto.vercel.app",
       description: "Full-stack scheduling and operations platform with role-based access, automated reminders, WhatsApp campaigns, and customer search.",
+      impact: "+40% monthly appointments · -70% no-shows · ~2k appts/mo",
       tech: ["Next.js", "Node.js", "Prisma", "PostgreSQL", "Tailwind CSS", "WhatsApp Business Cloud"],
       highlights: [
         "Handles around 2,000 appointments per month for a team of 20 internal users.",
@@ -87,6 +90,7 @@ export const DATA = {
       name: "Erika Torres",
       url: "https://erikatorresb.com",
       description: "Marketing website and CMS for a healthcare provider.",
+      impact: "+30% appointments from organic search · 400+ visits/mo on $0 ads",
       tech: ["Next.js", "Strapi", "Tailwind CSS", "Strapi Cloud"],
       highlights: [
         "Drives 400+ monthly visitors through organic search with no paid advertising.",
@@ -97,6 +101,7 @@ export const DATA = {
       name: "Autolisto CDA",
       url: "https://cdaautolisto.com.co",
       description: "Customer-facing website with an interactive pricing calculator that breaks down vehicle inspection costs by type.",
+      impact: "99.95% uptime · 95% SLA over the last year",
       tech: ["WordPress", "Elementor"],
       highlights: [
         "Maintained 95% SLA and 99.95% uptime over the past year.",
@@ -110,6 +115,7 @@ export const DATA = {
       year: "2026",
       details: "Validates hands-on knowledge of the Claude API, Claude Agent SDK, Claude Code, and Model Context Protocol (MCP).",
       link: "https://verify.skilljar.com/c/wm4i64zqtwqy",
+      badge: "/assets/badges/claude-certified-architect-foundations.png",
     },
     {
       title: "Advanced React",

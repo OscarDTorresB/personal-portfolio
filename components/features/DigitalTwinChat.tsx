@@ -167,7 +167,7 @@ export function DigitalTwinChat() {
   }
 
   return (
-    <div className="rounded-lg border border-border bg-background overflow-hidden">
+    <div className="rounded-2xl border border-border bg-card shadow-card overflow-hidden">
       {/* Suggested questions */}
       {!hasStarted && (
         <div className="p-4 border-b border-border">
@@ -284,7 +284,7 @@ export function DigitalTwinChat() {
           <button
             onClick={() => sendMessage(input)}
             disabled={!input.trim() || isLoading}
-            className="p-2 rounded-md bg-foreground text-background hover:opacity-90 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed"
+            className="p-2 rounded-md bg-accent text-accent-foreground hover:bg-accent-hover transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="Send message"
           >
             <Send size={16} />
